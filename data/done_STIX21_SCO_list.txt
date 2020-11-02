@@ -1,0 +1,18 @@
+artifact,Artifact Object,host
+autonomous-system,Autonomous System (AS) Object,host
+directory,Directory Object,host
+domain-name,Domain Name Object,network
+email-addr,Email Address Object,network
+email-message,Email Message Object,network
+file,File Object,host
+ipv4-addr,IPv4 Address Object,network
+ipv6-addr,IPv6 Address Object,network
+mac-addr,MAC Address Object,network
+mutex,Mutex Object,host
+network-traffic,Network Traffic Object,network
+process,Process Object,host
+software,Software Object,host
+url,URL Object,network
+user-account,User Account Object,host
+windows-registry-key,Windows Registry Key Object,host
+x509-certificate,X.509 Certificate Object,host

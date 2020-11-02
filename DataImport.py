@@ -7,6 +7,7 @@ import click
 from typing import List, Any, Type
 
 from log_entry import LogEntry
+from pcap_entry import PcapEntry
 
 applicable_rel = list()
 sdo_list = list()
@@ -17,7 +18,7 @@ def import_stix21_relationships(path, filename) -> list:
     filepath = path + filename
     rel_list: List[List[str]] = list()
     with open(filepath, 'rt', encoding='utf-8-sig') as f:
-        reader = csv.reader(f, delimiter=';', skipinitialspace=True)
+        reader = csv.reader(f, delimiter=',', skipinitialspace=True)
         for line in reader:
             rel_list.append(line)
             # print(line)
@@ -50,10 +51,11 @@ def import_simulation_output(path, filename) -> list:
             for line in reader:
                 simulation_output_list.append(line)
                 # print(line)
+            print('Simulation output imported (type:log file)')
         elif filename.endswith('.json'):
             simulation_output_list = json.load(f)
+            print('Simulation output imported (type:pcap file)')
             # print(json.dumps(simulation_output_list, indent=4, sort_keys=False))
-    print('Simulation output imported')
     return simulation_output_list
 
 
@@ -62,7 +64,7 @@ def convert_log_entries(simulation_output):
     log_entry_list = list()
     for line in simulation_output:
         level = line[0]
-        timestamp = extract_timestamp(line)
+        timestamp = convert_log_timestamp(line)
         ip_addr_host = line[3]
         program = line[4]
         message = ' '.join(line[5:])
@@ -72,15 +74,54 @@ def convert_log_entries(simulation_output):
     return log_entry_list
 
 
-def extract_timestamp(log) -> datetime:
-    """Extracts and converts timestamp information of a log entry into a datetime object"""
-    year = int(log[1][-4:])
-    month = int(log[1][0:2])
-    day = int(log[1][3:5])
-    hour = int(log[2][0:2])
-    minute = int(log[2][3:5])
-    second = int(log[2][6:8])
-    return datetime.datetime(year, month, day, hour, minute, second)
+def convert_pcap_frames(simulation_output):
+    """Converts a list of pcap frames to PcapEntry class instances and saves objects in list."""
+    pcap_frame_list = list()
+    for element in simulation_output:
+        timestamp = convert_pcap_timestamp(element['_source']['layers']['frame']['frame.time'])
+        protocol = element['_source']['layers']['frame']['frame.protocols']
+        eth_src = element['_source']['layers']['eth']['eth.src']
+        eth_dst = element['_source']['layers']['eth']['eth.dst']
+        message = element
+        if protocol.rpartition(':')[2] == 'arp':
+            arp_mac_addr = element['_source']['layers']['arp']['arp.src.hw_mac']
+            arp_ip_addr = element['_source']['layers']['arp']['arp.src.proto_ipv4']
+            for key in element['_source']['layers']:
+                if 'Duplicate' in key:
+                    arp_info = key
+                    print(arp_info)
+                    pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, arp_mac_addr,
+                                                     arp_ip_addr, arp_info))
+        elif protocol.rpartition(':')[2] == 'tcp':
+            ip_src = element['_source']['layers']['ip']['ip.src']
+            ip_dst = element['_source']['layers']['ip']['ip.dst']
+            tcp_src_port = element['_source']['layers']['tcp']['tcp.srcport']
+            tcp_dst_port = element['_source']['layers']['tcp']['tcp.dstport']
+            pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, ip_src, ip_dst,
+                                             tcp_src_port, tcp_dst_port))
+        elif protocol.rpartition(':')[2] == 'icmp':
+            icmp_type = element['_source']['layers']['icmp']['icmp.type']
+            icmp_code = element['_source']['layers']['icmp']['icmp.code']
+            pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, icmp_type, icmp_code))
+        elif protocol.rpartition(':')[2] == 'enip':
+            tcp_src_port = element['_source']['layers']['tcp']['tcp.srcport']
+            tcp_dst_port = element['_source']['layers']['tcp']['tcp.dstport']
+            pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, tcp_src_port,
+                                             tcp_dst_port))
+        pcap_frame_list.append(protocol)
+    print('Pcap frames converted')
+    return pcap_frame_list
+
+
+def convert_pcap_timestamp(frame_timestamp) -> datetime:
+    """Converts timestamp information of a pcap frame into a datetime object"""
+    return datetime.datetime.strptime(frame_timestamp[:-32], '%b %d, %Y %H:%M:%S.%f')
+
+
+def convert_log_timestamp(log) -> datetime:
+    """Converts timestamp information of a log entry into a datetime object"""
+    log_timestamp = log[1]+log[2]
+    return datetime.datetime.strptime(log_timestamp, '%m/%d/%Y%H:%M:%S')
 
 
 def analyze_log_message_ip(message) -> str:
@@ -170,7 +211,7 @@ def filter_scos(sco_list, sco_type='any'):
     """Filters list of all possible SCOs based on type of SCO (either host, network of any)."""
     filtered_sco_list = list()
     for entry in sco_list:
-        if entry[2] == sco_type:
+        if entry[2] == sco_type.lower():
             filtered_sco_list.append(entry)
         elif sco_type == 'any':
             filtered_sco_list = sco_list
@@ -182,6 +223,9 @@ def filter_scos(sco_list, sco_type='any'):
 
 
 
+def build_sco_list(sco_list, sco_type='any'):
+    """Build a custom SCO list out of selected SCOs."""
+    custom_sco_list = list()
 
 
 
@@ -216,21 +260,26 @@ if __name__ == '__main__':
 
 
 
+    test = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
+                                       "done_STIX21_SCO_list.txt")
+
+    print(filter_scos(test, 'network'))
 
 
+    pcap = import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\Use Case 1\\",
+                                    "2501.json")
 
-
+    converted_pcap = convert_pcap_frames(pcap)
 
     ''' Import a txt file containing all STIX2.1 relationships'''
-    rel_list1 = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
-                                            "done_STIX21_SCO_SDO_relationship_list_all.txt")
+    #rel_list1 = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
+     #                                       "done_STIX21_SCO_SDO_relationship_list_all.txt")
     '''Searching the relationship list for a STIX2.1 object with specified relationship type '''
-    search_list1 = search_stix21_objects(rel_list1, "ipv4-addr", 'direct')
+    #search_list1 = search_stix21_objects(rel_list1, "ipv4-addr", 'direct')
     # print(search_list1)
     '''Import the output of digital twin simulation'''
     # print(import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\", "DOS.json"))
     # test1 = import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\Filling-plant logs\\", "plc1.log")
-
 
 
 

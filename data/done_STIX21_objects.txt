@@ -1,0 +1,38 @@
+attack-pattern,Attack Pattern,SDO
+campaign,Campaign,SDO
+course-of-action,Course of Action,SDO
+grouping,Grouping,SDO
+identity,Identity,SDO
+indicator,Indicator,SDO
+infrastructure,Infrastructure,SDO
+intrusion-set,Intrusion Set,SDO
+location,Location,SDO
+malware,Malware,SDO
+malware-analysis,Malware Analysis,SDO
+note,Note,SDO
+observed-data,Observed Data,SDO
+opinion,Opinion,SDO
+report,Report,SDO
+threat-actor,Threat Actor,SDO
+tool,Tool,SDO
+vulnerability,Vulnerability,SDO
+relationship,Relationship,SRO
+sighting,Sighting,SRO
+artifact,Artifact Object,SCO
+autonomous-system,Autonomous System (AS) Object,SCO
+directory,Directory Object,SCO
+domain-name,Domain Name Object,SCO
+email-addr,Email Address Object,SCO
+email-message,Email Message Object,SCO
+file,File Object,SCO
+ipv4-addr,IPv4 Address Object,SCO
+ipv6-addr,IPv6 Address Object,SCO
+mac-addr,MAC Address Object,SCO
+mutex,Mutex Object,SCO
+network-traffic,Network Traffic Object,SCO
+process,Process Object,SCO
+software,Software Object,SCO
+url,URL Object,SCO
+user-account,User Account Object,SCO
+windows-registry-key,Windows Registry Key Object,SCO
+x509-certificate,X.509 Certificate Object,SCO
