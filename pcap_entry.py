@@ -39,11 +39,20 @@ class PcapEntry:
     def add_message_element(self, data):
         self.message = self.message + data
 
-    def generate_ipv4_addr(self):
-        ipv4_addr = IPv4Address(
-            id="ipv4-addr--" + str(uuid.uuid4()),
-            value=self.ip_dst
-        )
+    def generate_ipv4_addr(self, ip_type):
+        if ip_type == 'scr':
+            ipv4_addr = IPv4Address(
+                id="ipv4-addr--" + str(uuid.uuid4()),
+                value=self.ip_src
+            )
+        elif ip_type == 'dst':
+            ipv4_addr = IPv4Address(
+                id="ipv4-addr--" + str(uuid.uuid4()),
+                value=self.ip_dst
+            )
+        else:
+            print('Please specify IP address type (src or dst)')
+            return
         return ipv4_addr
 
     def generate_mac_addr(self):

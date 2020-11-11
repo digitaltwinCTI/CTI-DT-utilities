@@ -18,19 +18,21 @@ class LogEntry:
     def add_message_element(self, data):
         self.message = self.message + data
 
-    def generate_ipv4_addr_host(self):
-        ipv4_host = IPv4Address(
-            id="ipv4-addr--" + str(uuid.uuid4()),
-            value=self.ip_addr_host
-        )
-        return ipv4_host
-
-    def generate_ipv4_addr_external(self):
-        ipv4_ext = IPv4Address(
-            id="ipv4-addr--" + str(uuid.uuid4()),
-            value=self.ip_addr_external
-        )
-        return ipv4_ext
+    def generate_ipv4_addr(self, ip_type):
+        if ip_type == 'host':
+            ipv4_addr = IPv4Address(
+                id="ipv4-addr--" + str(uuid.uuid4()),
+                value=self.ip_addr_host
+            )
+        elif ip_type == 'external':
+            ipv4_addr = IPv4Address(
+                id="ipv4-addr--" + str(uuid.uuid4()),
+                value=self.ip_addr_external
+            )
+        else:
+            print('Please specify IP address type (host or external)')
+            return
+        return ipv4_addr
 
     # Issue with process object and program in log entry
 
