@@ -114,17 +114,18 @@ def convert_pcap_frames(simulation_output):
             ip_dst = element['_source']['layers']['ip']['ip.dst']
             tcp_src_port = element['_source']['layers']['tcp']['tcp.srcport']
             tcp_dst_port = element['_source']['layers']['tcp']['tcp.dstport']
-            pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, ip_src, ip_dst,
-                                             tcp_src_port, tcp_dst_port))
+            pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, None, None, None, ip_src,
+                                             ip_dst, tcp_src_port, tcp_dst_port))
         elif protocol.rpartition(':')[2] == 'icmp':
             icmp_type = element['_source']['layers']['icmp']['icmp.type']
             icmp_code = element['_source']['layers']['icmp']['icmp.code']
-            pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, icmp_type, icmp_code))
+            pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, None, None, None, None,
+                                             None, None, None, icmp_type, icmp_code))
         elif protocol.rpartition(':')[2] == 'enip':
             tcp_src_port = element['_source']['layers']['tcp']['tcp.srcport']
             tcp_dst_port = element['_source']['layers']['tcp']['tcp.dstport']
-            pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, tcp_src_port,
-                                             tcp_dst_port))
+            pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, None, None, None, None,
+                                             None, tcp_src_port, tcp_dst_port))
         else:
             pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message))
             counter += 1
@@ -289,7 +290,8 @@ if __name__ == '__main__':
     filtered_time = filter_timestamps(filtered_severity, datetime.timedelta(0, 8, 0, 0, 0), datetime.datetime(2020, 8, 17, 13, 51, 00))
     print(filtered_time)
 
-
+    for entry in filtered_time:
+        print(entry.generate_ipv4_addr_host())
 
 
     test = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
@@ -297,7 +299,7 @@ if __name__ == '__main__':
 
     print(filter_scos(test, 'network'))
 
-    build_sco_list(filter_scos(test, 'network'))
+ #   build_sco_list(filter_scos(test, 'network'))
 
     #all_rel_list = import_stix21_relationships()
 
