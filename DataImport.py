@@ -248,6 +248,10 @@ def build_sco_list(sco_list):
     custom_sco_list = list()
     for element in sco_list:
         answer = str(input('Do you want to select {}? (yes/no) '.format(element[1])))
+        if answer.lower()[:1] == 'y':
+            custom_sco_list.append(element)
+        elif answer.lower()[:1] == 'n':
+            pass
         while answer.lower()[:1] != 'y' and answer.lower()[:1] != 'n':
             print("Please enter y (yes) or n (no)")
             answer = str(input('Do you want to select {}? (yes/no) '.format(element[1])))
@@ -256,6 +260,25 @@ def build_sco_list(sco_list):
             elif answer.lower()[:1] == 'n':
                 pass
     return custom_sco_list
+
+# to continue
+def build_sdo_list(rel_list, sdosro_list, ):
+    """Allows the user to build a custom SCO list out of all available SCOs."""
+    custom_sdo_list = list()
+    for element in list:
+        answer = str(input('Do you want to select {}? (yes/no) '.format(element[1])))
+        if answer.lower()[:1] == 'y':
+            custom_sdo_list.append(element)
+        elif answer.lower()[:1] == 'n':
+            pass
+        while answer.lower()[:1] != 'y' and answer.lower()[:1] != 'n':
+            print("Please enter y (yes) or n (no)")
+            answer = str(input('Do you want to select {}? (yes/no) '.format(element[1])))
+            if answer.lower()[:1] == 'y':
+                custom_sdo_list.append(element)
+            elif answer.lower()[:1] == 'n':
+                pass
+    return custom_sdo_list
 
 
 def standardize_scos(sco_list, simulation_output, entry_type):
@@ -295,8 +318,8 @@ if __name__ == '__main__':
                                       datetime.datetime(2020, 8, 17, 13, 51, 00))
     print(filtered_time)
     '''Generate STIX2.1 SCOs for given log entry'''
-    print(filtered_time[0].generate_ipv4_addr('host'), filtered_time[0].generate_ipv4_addr('extern'),
-          filtered_time[0].generate_software())
+    print(filtered_time[0].generate_ipv4_addr('host'), filtered_time[0].generate_ipv4_addr('external'),
+          filtered_time[0].generate_software(), filtered_time[0].generate_process())
     '''Import and save simulation output from given pcap file'''
     simulation_output_pcap = import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation "
                                                       "Output\\Use Case 1\\", "2501.json")
@@ -315,11 +338,12 @@ if __name__ == '__main__':
     # print(filter_log_timestamps(converted_pcap))
 
     ''' Import a txt file containing all STIX2.1 relationships'''
-    # rel_list1 = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
-    #                                       "done_STIX21_SCO_SDO_relationship_list_all.txt")
+    rel_list1 = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
+                                           "done_STIX21_SCO_SDO_relationship_list_all.txt")
     '''Searching the relationship list for a STIX2.1 object with specified relationship type '''
-    # search_list1 = search_stix21_objects(rel_list1, "ipv4-addr", 'direct')
-    # print(search_list1)
+    search_list1 = search_stix21_objects(rel_list1, "ipv4-addr", 'direct')
+    for entry in search_list1:
+        print(entry)
     '''Import the output of digital twin simulation'''
     # print(import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\", "DOS.json"))
     # test1 = import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\Filling-plant logs\\", "plc1.log")
@@ -332,14 +356,17 @@ if __name__ == '__main__':
 
     print(filter_scos(test, 'network'))
 
-    #   build_sco_list(filter_scos(test, 'network'))
+    #custom_list = build_sco_list(filter_scos(test, 'network'))
+
+    custom_list = build_sco_list(test)
+
+    print(custom_list)
 
     # all_rel_list = import_stix21_relationships()
 
 
 
-    # filter_log_severity(convert_log_entries(test1), 'warning')
-    # filter_log_timestamps(convert_log_entries(test1), datetime.timedelta(0, 8, 0, 0, 0))
+
     '''
     try:
         print("This script retrieves relationships between STIX2.1 objects")

@@ -21,11 +21,11 @@ class LogEntry:
     def generate_ipv4_addr(self, ip_type):
         if ip_type == 'host':
             ipv4_addr = IPv4Address(
-                id="ipv4-addr--" + str(uuid.uuid4()),
                 value=self.ip_addr_host
             )
         elif ip_type == 'external':
             ipv4_addr = IPv4Address(
+                # id is optional
                 id="ipv4-addr--" + str(uuid.uuid4()),
                 value=self.ip_addr_external
             )
@@ -38,7 +38,13 @@ class LogEntry:
 
     def generate_software(self):
         software = Software(
-            id="software--" + str(uuid.uuid4()),
             name=self.program
         )
         return software
+
+    def generate_process(self, connection_refs=None):
+        process = Process(
+            command_line=self.program,
+            opened_connection_refs=connection_refs
+        )
+        return process
