@@ -261,24 +261,32 @@ def build_sco_list(sco_list):
                 pass
     return custom_sco_list
 
+
 # to continue
-def build_sdo_list(rel_list, sdosro_list, ):
+def build_sdo_list(rel_list, scosdo_list, rel_type='any'):
     """Allows the user to build a custom SCO list out of all available SCOs."""
-    custom_sdo_list = list()
-    for element in list:
-        answer = str(input('Do you want to select {}? (yes/no) '.format(element[1])))
-        if answer.lower()[:1] == 'y':
-            custom_sdo_list.append(element)
-        elif answer.lower()[:1] == 'n':
-            pass
-        while answer.lower()[:1] != 'y' and answer.lower()[:1] != 'n':
-            print("Please enter y (yes) or n (no)")
-            answer = str(input('Do you want to select {}? (yes/no) '.format(element[1])))
+    custom_scosdo_list = list()
+    custom_sro_list = list()
+    for element in scosdo_list:
+        for rel in search_stix21_objects(rel_list, element[0], rel_type):
+            answer = str(input('Do you want to select this relationship and associated objects {}? (yes/no) '.format(rel)))
             if answer.lower()[:1] == 'y':
-                custom_sdo_list.append(element)
+                custom_scosdo_list.append(rel[0])
+                custom_scosdo_list.append(rel[2])
+                custom_sro_list.append(rel)
             elif answer.lower()[:1] == 'n':
                 pass
-    return custom_sdo_list
+            while answer.lower()[:1] != 'y' and answer.lower()[:1] != 'n':
+                print("Please enter y (yes) or n (no)")
+                answer = str(input('Do you want to select this relationship and associated objects {}? (yes/no) '
+                                   .format(rel)))
+                if answer.lower()[:1] == 'y':
+                    custom_scosdo_list.append(rel[0])
+                    custom_scosdo_list.append(rel[2])
+                    custom_sro_list.append(rel)
+                elif answer.lower()[:1] == 'n':
+                    pass
+    return custom_scosdo_list, custom_sro_list
 
 
 def standardize_scos(sco_list, simulation_output, entry_type):
@@ -317,9 +325,15 @@ if __name__ == '__main__':
     filtered_time = filter_timestamps(filtered_severity, datetime.timedelta(0, 8, 0, 0, 0),
                                       datetime.datetime(2020, 8, 17, 13, 51, 00))
     print(filtered_time)
+    print('')
+    print('-------------------------------------------')
+    print('')
     '''Generate STIX2.1 SCOs for given log entry'''
     print(filtered_time[0].generate_ipv4_addr('host'), filtered_time[0].generate_ipv4_addr('external'),
           filtered_time[0].generate_software(), filtered_time[0].generate_process())
+    print('')
+    print('-------------------------------------------')
+    print('')
     '''Import and save simulation output from given pcap file'''
     simulation_output_pcap = import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation "
                                                       "Output\\Use Case 1\\", "2501.json")
@@ -334,14 +348,11 @@ if __name__ == '__main__':
     print(filter_protocols(converted_pcap, 'eth:ethertype:arp'))
     print(filter_timestamps(converted_pcap, datetime.timedelta(0, 0, 500, 0, 0)))
 
-
-    # print(filter_log_timestamps(converted_pcap))
-
     ''' Import a txt file containing all STIX2.1 relationships'''
     rel_list1 = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
                                            "done_STIX21_SCO_SDO_relationship_list_all.txt")
     '''Searching the relationship list for a STIX2.1 object with specified relationship type '''
-    search_list1 = search_stix21_objects(rel_list1, "ipv4-addr", 'direct')
+    search_list1 = search_stix21_objects(rel_list1, "ipv4-addr")
     for entry in search_list1:
         print(entry)
     '''Import the output of digital twin simulation'''
@@ -356,11 +367,13 @@ if __name__ == '__main__':
 
     print(filter_scos(test, 'network'))
 
-    #custom_list = build_sco_list(filter_scos(test, 'network'))
+    custom_list = build_sco_list(filter_scos(test, 'network'))
 
-    custom_list = build_sco_list(test)
+    # custom_list = build_sco_list(test)
 
-    print(custom_list)
+    print(build_sdo_list(rel_list1, custom_list))
+
+    # print(custom_list)
 
     # all_rel_list = import_stix21_relationships()
 
