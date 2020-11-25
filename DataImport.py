@@ -306,8 +306,16 @@ def assess_relationship(relationship):
     applicable_rel.append(relationship)
     print("Relationship and its objects have been added")
 
+def pretty_print_list(list):
+    print('The provided list contains the following elements:')
+    for element in list:
+        print(element)
+
 
 if __name__ == '__main__':
+    print('')
+    print('-------------------------------------------')
+    print('')
     '''Import and save simulation output from given log file'''
     simulation_output_log = import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\"
                                                      "Filling-plant logs\\", "NEWplc1.log")
@@ -344,10 +352,18 @@ if __name__ == '__main__':
     print(get_timespan(converted_pcap))
     '''Provide protocol type information about the pcap frames contained in the simulation output'''
     print(get_all_protocols(converted_pcap))
-
+    filtered_protocol = filter_protocols(converted_pcap, 'eth:ethertype:arp')
     print(filter_protocols(converted_pcap, 'eth:ethertype:arp'))
+    filtered_pcap_time = filter_timestamps(converted_pcap, datetime.timedelta(0, 0, 500, 0, 0))
     print(filter_timestamps(converted_pcap, datetime.timedelta(0, 0, 500, 0, 0)))
-
+    print('')
+    print('-------------------------------------------')
+    print('')
+    for result in filtered_pcap_time[2].generate_network_traffic():
+        print(result)
+    print('')
+    print('-------------------------------------------')
+    print('')
     ''' Import a txt file containing all STIX2.1 relationships'''
     rel_list1 = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
                                            "done_STIX21_SCO_SDO_relationship_list_all.txt")
@@ -367,16 +383,15 @@ if __name__ == '__main__':
 
     print(filter_scos(test, 'network'))
 
-    custom_list = build_sco_list(filter_scos(test, 'network'))
+    #      custom_list = build_sco_list(filter_scos(test, 'network'))
 
     # custom_list = build_sco_list(test)
 
-    print(build_sdo_list(rel_list1, custom_list))
+    #      pretty_print_list(build_sdo_list(rel_list1, custom_list))
 
     # print(custom_list)
 
     # all_rel_list = import_stix21_relationships()
-
 
 
 

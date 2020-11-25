@@ -40,7 +40,9 @@ class PcapEntry:
         self.message = self.message + data
 
     def generate_ipv4_addr(self, ip_type):
-        if ip_type == 'scr':
+        print(self)
+        print('TEST')
+        if ip_type == 'src':
             ipv4_addr = IPv4Address(
                 id="ipv4-addr--" + str(uuid.uuid4()),
                 value=self.ip_src
@@ -54,6 +56,17 @@ class PcapEntry:
             print('Please specify IP address type (src or dst)')
             return
         return ipv4_addr
+
+    def generate_network_traffic(self):
+        source = self.generate_ipv4_addr('src')
+        destination = self.generate_ipv4_addr('dst')
+        traffic = NetworkTraffic(
+            start=self.timestamp.isoformat(),
+            src_ref=source.id,
+            dst_ref=destination.id,
+            protocols=self.protocol
+        )
+        return source, destination, traffic
 
     def generate_mac_addr(self):
         mac_addr = MACAddress(
