@@ -353,7 +353,6 @@ if __name__ == '__main__':
     '''Provide protocol type information about the pcap frames contained in the simulation output'''
     print(get_all_protocols(converted_pcap))
     filtered_protocol = filter_protocols(converted_pcap, 'eth:ethertype:arp')
-    print(filter_protocols(converted_pcap, 'eth:ethertype:arp'))
     filtered_pcap_time = filter_timestamps(converted_pcap, datetime.timedelta(0, 0, 500, 0, 0))
     print(filter_timestamps(converted_pcap, datetime.timedelta(0, 0, 500, 0, 0)))
     print('')
@@ -368,7 +367,7 @@ if __name__ == '__main__':
     rel_list1 = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
                                            "done_STIX21_SCO_SDO_relationship_list_all.txt")
     '''Searching the relationship list for a STIX2.1 object with specified relationship type '''
-    search_list1 = search_stix21_objects(rel_list1, "ipv4-addr")
+    search_list1 = search_stix21_objects(rel_list1, "observed-data")
     for entry in search_list1:
         print(entry)
     '''Import the output of digital twin simulation'''
@@ -393,7 +392,13 @@ if __name__ == '__main__':
 
     # all_rel_list = import_stix21_relationships()
 
-
+    arp_frames = filtered_protocol
+    pretty_print_list(arp_frames)
+    list_arp = list()
+    for element in arp_frames:
+        list_arp.append(element.generate_ipv4_addr())
+    for element in list_arp:
+        pretty_print_list(element)
 
     '''
     try:
