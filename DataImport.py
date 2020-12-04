@@ -400,6 +400,7 @@ if __name__ == '__main__':
     for element in list_arp:
         pretty_print_list(element)
 
+
     '''
     try:
         print("This script retrieves relationships between STIX2.1 objects")
