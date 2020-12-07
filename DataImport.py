@@ -21,7 +21,6 @@ def import_stix21_relationships(path, filename) -> list:
         reader = csv.reader(f, delimiter=',', skipinitialspace=True)
         for line in reader:
             rel_list.append(line)
-            # print(line)
     return rel_list
 
 
@@ -32,12 +31,10 @@ def search_stix21_objects(rel_list, object_name, rel_type='any') -> list:
         if relationship[3] == rel_type or rel_type == 'any':
             if relationship[0] == object_name and relationship[0] == relationship[2]:
                 searched_rel_list.append(relationship)
-                # print(relationship[0:4])
             else:
                 for position in range(len(relationship)):
                     if relationship[position] == object_name:
                         searched_rel_list.append(relationship)
-                        # print(relationship[0:4])
     return searched_rel_list
 
 
@@ -50,12 +47,10 @@ def import_simulation_output(path, filename) -> list:
             reader = csv.reader(f, delimiter=' ', skipinitialspace=True)
             for line in reader:
                 simulation_output_list.append(line)
-                # print(line)
             print('Simulation output imported (type:log file)')
         elif filename.endswith('.json'):
             simulation_output_list = json.load(f)
             print('Simulation output imported (type:pcap file)')
-            # print(json.dumps(simulation_output_list, indent=4, sort_keys=False))
     return simulation_output_list
 
 
@@ -122,14 +117,19 @@ def convert_pcap_frames(simulation_output):
             pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, None, None, None, None,
                                              None, None, None, icmp_type, icmp_code))
         elif protocol.rpartition(':')[2] == 'enip':
+            ip_src = element['_source']['layers']['ip']['ip.src']
+            #print(ip_src)
+            ip_dst = element['_source']['layers']['ip']['ip.dst']
+            #print(ip_dst)
             tcp_src_port = element['_source']['layers']['tcp']['tcp.srcport']
+            #print(tcp_src_port)
             tcp_dst_port = element['_source']['layers']['tcp']['tcp.dstport']
-            pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, None, None, None, None,
-                                             None, tcp_src_port, tcp_dst_port))
+            pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message, None, None, None, ip_src,
+                                             ip_dst, tcp_src_port, tcp_dst_port))
         else:
             pcap_frame_list.append(PcapEntry(timestamp, protocol, eth_src, eth_dst, message))
-            counter += 1
-    print('Number of unspecified pcap frames: {}' .format(counter))
+            #counter += 1
+    #print('Number of unspecified pcap frames: {}' .format(counter))
     print('Pcap frames converted')
     return pcap_frame_list
 
@@ -262,31 +262,26 @@ def build_sco_list(sco_list):
     return custom_sco_list
 
 
-# to continue
 def build_sdo_list(rel_list, scosdo_list, rel_type='any'):
-    """Allows the user to build a custom SCO list out of all available SCOs."""
+    """Allows the user to build a custom STIX2.1 objects list out of all available relatioships."""
+    rel_list_current = rel_list
     custom_scosdo_list = list()
     custom_sro_list = list()
     for element in scosdo_list:
-        for rel in search_stix21_objects(rel_list, element[0], rel_type):
+        for rel in search_stix21_objects(rel_list_current, element[0], rel_type):
             answer = str(input('Do you want to select this relationship and associated objects {}? (yes/no) '.format(rel)))
-            if answer.lower()[:1] == 'y':
-                custom_scosdo_list.append(rel[0])
-                custom_scosdo_list.append(rel[2])
-                custom_sro_list.append(rel)
-            elif answer.lower()[:1] == 'n':
-                pass
             while answer.lower()[:1] != 'y' and answer.lower()[:1] != 'n':
                 print("Please enter y (yes) or n (no)")
                 answer = str(input('Do you want to select this relationship and associated objects {}? (yes/no) '
                                    .format(rel)))
-                if answer.lower()[:1] == 'y':
-                    custom_scosdo_list.append(rel[0])
-                    custom_scosdo_list.append(rel[2])
-                    custom_sro_list.append(rel)
-                elif answer.lower()[:1] == 'n':
-                    pass
-    return custom_scosdo_list, custom_sro_list
+            if answer.lower()[:1] == 'y':
+                custom_scosdo_list.append(rel[0])
+                custom_scosdo_list.append(rel[2])
+                custom_sro_list.append(rel)
+                rel_list_current.remove(rel)
+            elif answer.lower()[:1] == 'n':
+                pass
+    return sorted(set(custom_scosdo_list)), custom_sro_list
 
 
 def standardize_scos(sco_list, simulation_output, entry_type):
@@ -305,6 +300,7 @@ def parse_simulation_output(simulation_output):
 def assess_relationship(relationship):
     applicable_rel.append(relationship)
     print("Relationship and its objects have been added")
+
 
 def pretty_print_list(list):
     print('The provided list contains the following elements:')
@@ -332,13 +328,16 @@ if __name__ == '__main__':
     filtered_severity = filter_log_severity(filtered_ip, 'WARNING')
     filtered_time = filter_timestamps(filtered_severity, datetime.timedelta(0, 8, 0, 0, 0),
                                       datetime.datetime(2020, 8, 17, 13, 51, 00))
-    print(filtered_time)
+    pretty_print_list(filtered_time)
     print('')
     print('-------------------------------------------')
     print('')
+    print('Generated STIX2.1 SCOs from log entries:')
     '''Generate STIX2.1 SCOs for given log entry'''
-    print(filtered_time[0].generate_ipv4_addr('host'), filtered_time[0].generate_ipv4_addr('external'),
-          filtered_time[0].generate_software(), filtered_time[0].generate_process())
+    ip1 = filtered_time[0].generate_ipv4_addr('host')
+    ip3 = filtered_time[0].generate_ipv4_addr('external')
+    process = filtered_time[0].generate_process()
+    print(ip1, ip3, process)
     print('')
     print('-------------------------------------------')
     print('')
@@ -352,6 +351,15 @@ if __name__ == '__main__':
     print(get_timespan(converted_pcap))
     '''Provide protocol type information about the pcap frames contained in the simulation output'''
     print(get_all_protocols(converted_pcap))
+    print('')
+    print('-------------------------------------------')
+    print('')
+    #filter_enip = filter_protocols(converted_pcap, 'eth:ethertype:ip:tcp:enip:cip:cipcm:cipcls')
+    filter_enip = filter_protocols(converted_pcap, 'eth:ethertype:ip:tcp:enip')
+    pretty_print_list(filter_enip)
+    print('')
+    print('-------------------------------------------')
+    print('')
     filtered_protocol = filter_protocols(converted_pcap, 'eth:ethertype:arp')
     filtered_pcap_time = filter_timestamps(converted_pcap, datetime.timedelta(0, 0, 500, 0, 0))
     print(filter_timestamps(converted_pcap, datetime.timedelta(0, 0, 500, 0, 0)))
@@ -365,7 +373,7 @@ if __name__ == '__main__':
     print('')
     ''' Import a txt file containing all STIX2.1 relationships'''
     rel_list1 = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
-                                           "done_STIX21_SCO_SDO_relationship_list_all.txt")
+                                           "done_STIX21_SCO+SDO_relationship_list_all.txt")
     '''Searching the relationship list for a STIX2.1 object with specified relationship type '''
     search_list1 = search_stix21_objects(rel_list1, "observed-data")
     for entry in search_list1:
@@ -377,15 +385,37 @@ if __name__ == '__main__':
     # print(extract_timestamp(test1[0]))
     # print(extract_timestamp(test1[0]) - datetime.timedelta(0, 7))
 
-    test = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
+    print('')
+    print('-------------------------------------------')
+    print('')
+    sco_list = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
                                        "done_STIX21_SCO_list.txt")
+    pretty_print_list(filter_scos(sco_list, 'network'))
+    print('')
+    print('-------------------------------------------')
+    print('')
+    print('Build initial custom SCO list')
+    static_SCO_list = [['ipv4-addr', 'IPv4 Address Object', 'network'], ['mac-addr', 'MAC Address Object', 'network'],
+                   ['network-traffic', 'Network Traffic Object', 'network'], ['process', 'Process Object', 'host']]
+    #pretty_print_list(static_SCO_list)
+    #initial_custom_SCO_list = build_sco_list(sco_list)
+    print('')
+    #pretty_print_list(initial_custom_SCO_list)
+    print('')
+    print('-------------------------------------------')
+    print('')
+    print('Search for relationships (SCO embedded & SDO direct) of given SCO list')
+    #custom_SCO_SCO_rel_list = build_sdo_list(rel_list1, initial_custom_SCO_list)
+    custom_SCO_SCO_rel_list = build_sdo_list(rel_list1, static_SCO_list)
 
-    print(filter_scos(test, 'network'))
+    #for list in custom_SCO_SCO_rel_list:
+       #pretty_print_list(custom_SCO_SCO_rel_list)
+    print('')
+    print('-------------------------------------------')
+    print('')
 
-    #      custom_list = build_sco_list(filter_scos(test, 'network'))
 
     # custom_list = build_sco_list(test)
-
     #      pretty_print_list(build_sdo_list(rel_list1, custom_list))
 
     # print(custom_list)
@@ -397,8 +427,8 @@ if __name__ == '__main__':
     list_arp = list()
     for element in arp_frames:
         list_arp.append(element.generate_ipv4_addr())
-    for element in list_arp:
-        pretty_print_list(element)
+    #for element in list_arp:
+    #    pretty_print_list(element)
 
 
     '''

@@ -32,7 +32,8 @@ class PcapEntry:
         elif self.protocol == 'eth:ethertype:ip:icmp':
             return f'{self.timestamp} {self.protocol} {self.eth_src} {self.eth_dst} {self.message}'
         elif self.protocol == 'eth:ethertype:ip:tcp:enip':
-            return f'{self.timestamp} {self.protocol} {self.eth_src} {self.eth_dst} {self.message}'
+            return f'{self.timestamp} {self.protocol} {self.eth_src} {self.eth_dst} {self.ip_src} {self.ip_dst}' \
+                   f' {self.tcp_src_port} {self.tcp_dst_port} {self.message} '
         else:
             return f'{self.timestamp} {self.protocol} {self.eth_src} {self.eth_dst} {self.message}'
 
