@@ -74,9 +74,18 @@ class PcapEntry:
         )
         return source, destination, traffic
 
-    def generate_mac_addr(self):
-        mac_addr = MACAddress(
-            id="mac-addr--" + str(uuid.uuid4()),
-            value=self.arp_mac_addr
-        )
+    def generate_mac_addr(self, type=None):
+        if self.protocol[-3:] == 'arp':
+            mac_addr = MACAddress(
+                value=self.arp_mac_addr
+            )
+        else:
+            if type is None or type == 'src':
+                mac_addr = MACAddress(
+                    value=self.eth_src
+                )
+            else:
+                mac_addr = MACAddress(
+                    value=self.eth_dst
+                )
         return mac_addr

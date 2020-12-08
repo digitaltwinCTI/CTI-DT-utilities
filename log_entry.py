@@ -18,7 +18,7 @@ class LogEntry:
     def add_message_element(self, data):
         self.message = self.message + data
 
-    def generate_ipv4_addr(self, ip_type):
+    def generate_ipv4_addr(self, ip_type='host'):
         if ip_type == 'host':
             ipv4_addr = IPv4Address(
                 value=self.ip_addr_host
