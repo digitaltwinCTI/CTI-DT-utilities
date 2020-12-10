@@ -2,6 +2,9 @@ import csv
 import datetime
 import json
 import ipaddress
+import os
+
+from stix2.v21 import *
 import click
 
 from typing import List, Any, Type
@@ -309,6 +312,8 @@ def pretty_print_list(list):
 
 
 if __name__ == '__main__':
+    stix21_object_list_MITM = list()
+    stix21_object_list_DOS = list()
     print('')
     print('-------------------------------------------')
     print('')
@@ -329,9 +334,13 @@ if __name__ == '__main__':
     print('')
     print('Generated STIX2.1 SCOs from log entries:')
     ip1 = filtered_time[0].generate_ipv4_addr('host')
+    stix21_object_list_MITM.append(ip1)
     ip2 = filtered_ip2[0].generate_ipv4_addr('external')
+    stix21_object_list_MITM.append(ip2)
     ip3 = filtered_time[0].generate_ipv4_addr('external')
+    stix21_object_list_MITM.append(ip3)
     process = filtered_time[0].generate_process()
+    stix21_object_list_MITM.append(process)
     print(ip1, ip2, ip3, process)
     print('')
     print('-------------------------------------------')
@@ -347,6 +356,12 @@ if __name__ == '__main__':
     #filtered_enip = filter_protocols(converted_pcap, 'eth:ethertype:ip:tcp:enip:cip:cipcm:cipcls')
     filtered_enip = filter_protocols(converted_pcap, 'eth:ethertype:ip:tcp:enip')
     pretty_print_list(filtered_enip)
+    print('')
+    print('-------------------------------------------')
+    print('')
+    network_traffic_list_enip = list()
+    for element in filtered_enip:
+        network_traffic_list_enip.append(element.generate_network_traffic()) ##TO DO Continue
     print('')
     print('-------------------------------------------')
     print('')
@@ -371,6 +386,58 @@ if __name__ == '__main__':
     print('')
     print('-------------------------------------------')
     print('')
+    print('Generated STIX2.1 SDOs')
+    attack_pattern = AttackPattern(
+        name='ARP Spoofing attack',
+        description='The attacker targets the communication between network components as a MITM and uses ARP packets'
+                    ' to redirect network traffic',
+        external_references=[ExternalReference(
+            source_name='capec',
+            external_id='CAPEC-94'),
+            ExternalReference(
+                source_name='capec',
+                external_id='CAPEC-141')],
+        kill_chain_phases=KillChainPhase(
+            kill_chain_name='lockheed-martin-cyber-kill-chain',
+            phase_name='reconnaissance'
+        )
+    )
+    infrastructure = Infrastructure(
+        name='Filling plant digital twin',
+        description="Digital twin representing a filling plant with three PLCs. Target of the conducted attack"
+    )
+    tool = Tool(
+        name='Ettercap'
+    )
+    print(attack_pattern, infrastructure, tool)
+    indicator = Indicator(
+        name='ARP spoofing indicator',
+        description='ARP spoofing network traffic used to intercept traffic based on MAC addresses',
+        pattern="[network_traffic:src = '00:00:00:00:00:05']",
+        pattern_type='stix',
+        valid_from=datetime.datetime.now()
+    )
+    observed_data1 = ObservedData(
+        first_observed=datetime.datetime.now(),#replace by object timestamp
+        last_observed=datetime.datetime.now(),#replace by last object timestamp
+        number_observed=6,
+        object_refs=ip1#regular traffic
+    )
+    observed_data2 = ObservedData(
+        first_observed=datetime.datetime.now(),
+        last_observed=datetime.datetime.now(),
+        number_observed=20,
+        object_refs=ip1#arp traffic
+    )
+    observed_data3 = ObservedData(
+        first_observed=datetime.datetime.now(),#replace by object timestamp
+        last_observed=datetime.datetime.now(),#replace by last object timestamp
+        number_observed=1,
+        object_refs=ip1# traffic arp spoof last enip entry
+    )
+    print('')
+    print('-------------------------------------------')
+    print('')
     ''' Import a txt file containing all STIX2.1 relationships'''
     rel_list1 = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
                                            "done_STIX21_SCO+SDO_relationship_list_all.txt")
@@ -389,7 +456,7 @@ if __name__ == '__main__':
     print('-------------------------------------------')
     print('')
     sco_list = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
-                                       "done_STIX21_SCO_list.txt")
+                                       "STIX21_SCO_list.txt")
     pretty_print_list(filter_scos(sco_list, 'network'))
     print('')
     print('-------------------------------------------')
@@ -445,12 +512,16 @@ if __name__ == '__main__':
     print(get_all_ip_addr(converted_logs_dos2))
     print(get_timespan(converted_logs_dos2))
     print(get_all_severity_level(converted_logs_dos2))
-    pretty_print_list(converted_logs_dos1)
+    #pretty_print_list(converted_logs_dos1)
 
     ip1dos = converted_logs_dos1[0].generate_ipv4_addr()
     ip2dos = converted_logs_dos2[0].generate_ipv4_addr()
 
     print(ip1dos, ip2dos)
+
+    print('path to data directory')
+    root_dir = os.path.dirname(os.path.abspath(__file__))
+    import_path = os.path.join(root_dir, 'data')
 
     '''
     try:
