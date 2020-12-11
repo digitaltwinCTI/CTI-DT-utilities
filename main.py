@@ -44,7 +44,7 @@ if __name__ == '__main__':
     print(get_all_ip_addr(converted_logs_MITM))
     print('')
 
-    print(get_timespan(converted_logs_MITM))
+    pretty_print_list(get_timespan(converted_logs_MITM))
     print('')
 
     print(get_all_severity_level(converted_logs_MITM))
@@ -65,7 +65,6 @@ if __name__ == '__main__':
     print('-------------------------------------------')
     print('')
 
-    print('Generated STIX2.1 SCOs from log entries:')
     ip1 = filtered_time[0].generate_ipv4_addr('host')
     stix21_object_list_MITM.append(ip1)
     ip2 = filtered_ip2[0].generate_ipv4_addr('external')
@@ -74,28 +73,41 @@ if __name__ == '__main__':
     stix21_object_list_MITM.append(ip3)
     process = filtered_time[0].generate_process()
     stix21_object_list_MITM.append(process)
+
+    print('Generated STIX2.1 SCOs from log entries:')
     print(ip1, ip2, ip3, process)
+
     print('')
     print('-------------------------------------------')
     print('')
 
-    print(get_timespan(converted_pcap))
-    print(get_all_protocols(converted_pcap))
+    print(get_timespan(converted_pcap_MITM))
+    print('')
+
+    pretty_print_list(get_all_protocols(converted_pcap_MITM))
+
     print('')
     print('-------------------------------------------')
     print('')
-    #filtered_enip = filter_protocols(converted_pcap, 'eth:ethertype:ip:tcp:enip:cip:cipcm:cipcls')
-    filtered_enip = filter_protocols(converted_pcap, 'eth:ethertype:ip:tcp:enip')
+
+    filtered_enip = filter_protocols(converted_pcap_MITM, 'eth:ethertype:ip:tcp:enip')
+    print('')
+
     pretty_print_list(filtered_enip)
+
     print('')
     print('-------------------------------------------')
     print('')
+
     network_traffic_list_enip = list()
     for element in filtered_enip:
-        network_traffic_list_enip.append(element.generate_network_traffic()) ##TO DO Continue
+        network_traffic_list_enip.append(element.generate_network_traffic(stix21_object_list_DOS)) ##TO DO Continue
+    print(network_traffic_list_enip)
+
     print('')
     print('-------------------------------------------')
     print('')
+
     print('Generated STIX2.1 SCOs from pcap frames 1/3:')
     mac1 = filtered_enip[0].generate_mac_addr('src')
     mac2 = filtered_enip[0].generate_mac_addr('dst')

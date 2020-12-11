@@ -63,7 +63,13 @@ class PcapEntry:
             return
         return ipv4_addr
 
-    def generate_network_traffic(self):
+    def generate_network_traffic(self, instantiated_stix21_objects=None):
+        if self.protocol[-4:] == 'enip':
+            print('test')
+            for object in instantiated_stix21_objects:
+                if self.eth_src == object.value:
+                        pass
+
         source = self.generate_ipv4_addr('src')
         destination = self.generate_ipv4_addr('dst')
         traffic = NetworkTraffic(
