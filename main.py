@@ -1,6 +1,7 @@
 """
 This is the main program for CTI generation based on digital twin simulation output
 """
+
 from search_stix21_objects import *
 from select_stix21_objects import *
 from import_stix21_data import *
@@ -81,7 +82,7 @@ if __name__ == '__main__':
     print('-------------------------------------------')
     print('')
 
-    print(get_timespan(converted_pcap_MITM))
+    pretty_print_list(get_timespan(converted_pcap_MITM))
     print('')
 
     pretty_print_list(get_all_protocols(converted_pcap_MITM))
@@ -101,29 +102,56 @@ if __name__ == '__main__':
 
     network_traffic_list_enip = list()
     for element in filtered_enip:
-        network_traffic_list_enip.append(element.generate_network_traffic(stix21_object_list_DOS)) ##TO DO Continue
-    print(network_traffic_list_enip)
+        network_traffic = element.generate_network_traffic(stix21_object_list_MITM)
+        network_traffic_list_enip.append(network_traffic)
+        stix21_object_list_MITM.append(network_traffic)
+
+    print('Generated STIX2.1 network traffic SCOs from enip filtered pcap frames:')
+    pretty_print_list(network_traffic_list_enip)
 
     print('')
     print('-------------------------------------------')
     print('')
 
-    print('Generated STIX2.1 SCOs from pcap frames 1/3:')
     mac1 = filtered_enip[0].generate_mac_addr('src')
+    stix21_object_list_MITM.append(mac1)
     mac2 = filtered_enip[0].generate_mac_addr('dst')
+    stix21_object_list_MITM.append(mac2)
     mac3 = filtered_enip[2].generate_mac_addr('dst')
+    stix21_object_list_MITM.append(mac3)
+
+    print('Generated STIX2.1 MAC addresses from enip filtered pcap frames:')
     print(mac1, mac2, mac3)
+
     print('')
     print('-------------------------------------------')
     print('')
-    filtered_arp = filter_protocols(converted_pcap, 'eth:ethertype:arp')
+
+    filtered_arp = filter_protocols(converted_pcap_MITM, 'eth:ethertype:arp')
+    print('')
+
     pretty_print_list(filtered_arp)
+
     print('')
     print('-------------------------------------------')
     print('')
-    print('Generated STIX2.1 SCOs from pcap frames 2/3:')
-    mac4 = filtered_arp[0].generate_mac_addr()
+
+    print('Generated STIX2.1 MAC address from arp filtered pcap frames:')
+    mac4 = filtered_arp[0].generate_mac_addr('arp')
     print(mac4)
+
+    print('')
+    print('-------------------------------------------')
+    print('')
+
+    network_traffic_list_arp = list()
+    for element in filtered_arp:
+        network_traffic_list_arp.append(element.generate_network_traffic(stix21_object_list_MITM))  ##TO DO Continue
+
+    print('Generated STIX2.1 network traffic from arp filtered pcap frames:')
+    pretty_print_list(network_traffic_list_arp)
+
+    print('')
     #for result in filtered_pcap_time[2].generate_network_traffic():
      #   print(result)
     print('')

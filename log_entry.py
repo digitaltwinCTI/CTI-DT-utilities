@@ -34,17 +34,8 @@ class LogEntry:
             return
         return ipv4_addr
 
-    # Issue with process object and program in log entry
-
-    def generate_software(self):
-        software = Software(
-            name=self.program
-        )
-        return software
-
     def generate_process(self, connection_refs=None):
         process = Process(
-            command_line=self.program,
-            opened_connection_refs=connection_refs
+            command_line=self.program
         )
         return process

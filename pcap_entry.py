@@ -50,12 +50,10 @@ class PcapEntry:
             return mac, ipv4_addr
         elif ip_type == 'src':
             ipv4_addr = IPv4Address(
-                id="ipv4-addr--" + str(uuid.uuid4()),
                 value=self.ip_src
             )
         elif ip_type == 'dst':
             ipv4_addr = IPv4Address(
-                id="ipv4-addr--" + str(uuid.uuid4()),
                 value=self.ip_dst
             )
         else:
@@ -65,33 +63,60 @@ class PcapEntry:
 
     def generate_network_traffic(self, instantiated_stix21_objects=None):
         if self.protocol[-4:] == 'enip':
-            print('test')
+            source = None
+            destination = None
             for object in instantiated_stix21_objects:
-                if self.eth_src == object.value:
-                        pass
+                if object.type == 'ipv4-addr':
+                    if self.ip_src == object.value:
+                        source = object
+                    elif self.ip_dst == object.value:
+                        destination = object
+            if source is None:
+                source = self.generate_ipv4_addr('src')
+            elif destination is None:
+                destination = self.generate_ipv4_addr('dst')
 
-        source = self.generate_ipv4_addr('src')
-        destination = self.generate_ipv4_addr('dst')
-        traffic = NetworkTraffic(
-            start=self.timestamp.isoformat(),
-            src_ref=source.id,
-            dst_ref=destination.id,
-            protocols=self.protocol
-        )
-        return source, destination, traffic
+            traffic = NetworkTraffic(
+                start=self.timestamp.isoformat(),
+                src_ref=source.id,
+                dst_ref=destination.id,
+                src_port=self.tcp_src_port,
+                dst_port=self.tcp_dst_port,
+                protocols=['ipv4', 'tcp', 'enip']
+            )
+        elif self.protocol[-3:] == 'arp':
+            source = None
+            destination = None
+            for object in instantiated_stix21_objects:
+                if object.type == 'mac-addr':
+                    if self.eth_src == object.value:
+                        source = object
+                    elif self.eth_dst == object.value:
+                        destination = object
+            if source is None:
+                source = self.generate_mac_addr()
+            elif destination is None:
+                destination = self.generate_mac_addr()
+
+            traffic = NetworkTraffic(
+                start=self.timestamp.isoformat(),
+                src_ref=source.id,
+                dst_ref=destination.id,
+                protocols=['eth', 'arp']
+            )
+        return traffic
 
     def generate_mac_addr(self, type=None):
-        if self.protocol[-3:] == 'arp':
+        if type is None or type == 'src':
+            mac_addr = MACAddress(
+                value=self.eth_src
+            )
+        elif type == 'dst':
+            mac_addr = MACAddress(
+                value=self.eth_dst
+            )
+        elif type == 'arp':
             mac_addr = MACAddress(
                 value=self.arp_mac_addr
             )
-        else:
-            if type is None or type == 'src':
-                mac_addr = MACAddress(
-                    value=self.eth_src
-                )
-            else:
-                mac_addr = MACAddress(
-                    value=self.eth_dst
-                )
         return mac_addr
