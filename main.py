@@ -7,6 +7,7 @@ from select_stix21_objects import *
 from import_stix21_data import *
 from import_simulation_output import *
 from filter_functions import *
+from stix2.v21 import *
 
 
 def pretty_print_list(list):
@@ -138,6 +139,7 @@ if __name__ == '__main__':
 
     print('Generated STIX2.1 MAC address from arp filtered pcap frames:')
     mac4 = filtered_arp[0].generate_mac_addr('arp')
+    stix21_object_list_MITM.append(mac4)
     print(mac4)
 
     print('')
@@ -146,14 +148,31 @@ if __name__ == '__main__':
 
     network_traffic_list_arp = list()
     for element in filtered_arp:
-        network_traffic_list_arp.append(element.generate_network_traffic(stix21_object_list_MITM))  ##TO DO Continue
+        network_traffic_list_arp.append(element.generate_network_traffic(stix21_object_list_MITM))
+
+    for element in network_traffic_list_arp:
+        stix21_object_list_MITM.append(element)
 
     print('Generated STIX2.1 network traffic from arp filtered pcap frames:')
     pretty_print_list(network_traffic_list_arp)
 
     print('')
-    #for result in filtered_pcap_time[2].generate_network_traffic():
-     #   print(result)
+    print('-------------------------------------------')
+    print('')
+
+    print('Searching the relationship list for a STIX2.1 object with specified relationship type')
+    search_list1 = search_stix21_objects(imported_sro_list, "tool",'direct')
+    for entry in search_list1:
+        print(entry)
+
+    print('')
+
+    # custom_sco_list_MITM = build_sco_list(imported_sco_list)
+    # static_sco_list_MITM = get_static_mitm_sco_list()
+    custom_sdo_sro_list_MITM = build_sdosro_list(imported_sro_list, static_sco_list_MITM, 'any')
+    custom_sro_list_MITM = custom_sdo_sro_list_MITM[1]
+    custom_sco_sdo_list_MITM = custom_sdo_sro_list_MITM[0]
+
     print('')
     print('-------------------------------------------')
     print('')
@@ -209,13 +228,7 @@ if __name__ == '__main__':
     print('')
     print('-------------------------------------------')
     print('')
-    ''' Import a txt file containing all STIX2.1 relationships'''
-    rel_list1 = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
-                                           "done_STIX21_SCO+SDO_relationship_list_all.txt")
-    '''Searching the relationship list for a STIX2.1 object with specified relationship type '''
-    search_list1 = search_stix21_objects(rel_list1, "tool",'direct')
-    for entry in search_list1:
-        print(entry)
+
     '''Import the output of digital twin simulation'''
     # print(import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\", "DOS.json"))
     # test1 = import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\Filling-plant logs\\", "plc1.log")

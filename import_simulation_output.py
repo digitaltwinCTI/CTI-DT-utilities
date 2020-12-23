@@ -1,5 +1,5 @@
 """
-This module is intended to import and convert the digital twin simulation output (log files and network traffic captures)
+This module is intended to import and convert the digital twin simulation output (log files and network traffic capture)
 """
 
 import csv
