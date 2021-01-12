@@ -9,7 +9,9 @@ from import_simulation_output import *
 from filter_functions import *
 from stix2.v21 import *
 from stix2 import (ObjectPath, EqualityComparisonExpression, ObservationExpression, GreaterThanComparisonExpression,
-                   IsSubsetComparisonExpression, FloatConstant, StringConstant, IntegerConstant)
+                   IsSubsetComparisonExpression, FloatConstant, StringConstant, IntegerConstant, AndBooleanExpression,
+                   FollowedByObservationExpression, RepeatQualifier, WithinQualifier, ParentheticalExpression,
+                   QualifiedObservationExpression)
 
 
 def pretty_print_list(list):
@@ -276,25 +278,58 @@ if __name__ == '__main__':
 
     print('')
 
-    print('Custom generated Indicator based on duplicate IP MAC resolving, ARP traffic and spoofed traffic:')
+    print('Custom generated Indicators based on duplicate IP to MAC resolving, ARP traffic and spoofed traffic:')
 
-    indicator = Indicator(
-        name='ARP spoofing indicator',
-        description='ARP spoofing network traffic used to intercept traffic based on MAC addresses',
-        pattern="[network_traffic:src = '00:00:00:00:00:05']",
+    lhs1 = ObjectPath("ipv4-addr", ["resolves_to_refs[0]"])
+    lhs1b = ObjectPath("ipv4-addr", ["resolves_to_refs[1]"])
+    ob1 = EqualityComparisonExpression(lhs1, StringConstant('00:00:00:00:00:05'), True)
+    ob1b = EqualityComparisonExpression(lhs1b, StringConstant('00:00:00:00:00:05'))
+    pattern1 = ObservationExpression(AndBooleanExpression([ob1, ob1b]))
+
+    indicator1 = Indicator(
+        name='ARP spoofing indicator - duplicate IP address',
+        description='IP address resolves to two different MAC addresses',
+        pattern=pattern1,
         pattern_type='stix',
         valid_from=datetime.datetime.now()
     )
+    stix21_object_list_MITM.append(indicator1)
 
-    lhs1 = ObjectPath("ipv4-addr", ["resolves_to_refs[*]"])
-    ob1 = EqualityComparisonExpression(lhs1, StringConstant('00:00:00:00:00:05'))
-    obe1 = ObservationExpression(ob1)
-    print("\t{}\n".format(obe1))
+    print(indicator1)
 
     lhs2 = ObjectPath('network-traffic', ['scr_ref'])
     ob2 = EqualityComparisonExpression(lhs2, StringConstant('00:00:00:00:00:05'))
-    obe2 = ObservationExpression(ob2)
+    lhs2b = ObjectPath('network-traffic', ['protocols[1]'])
+    ob2b = EqualityComparisonExpression(lhs2b, StringConstant('arp'))
+    obe2 = ObservationExpression(AndBooleanExpression([ob2, ob2b]))
+    pattern2 = QualifiedObservationExpression(QualifiedObservationExpression(obe2, RepeatQualifier(10)),
+                                              WithinQualifier(5))
 
+    indicator2 = Indicator(
+        name='ARP spoofing indicator - repeated arp traffic',
+        description='ARP spoofing network traffic originating from malicious MAC address',
+        pattern=pattern2,
+        pattern_type='stix',
+        valid_from=datetime.datetime.now()
+    )
+    stix21_object_list_MITM.append(indicator2)
+
+    print(indicator2)
+
+    lhs3 = ObjectPath('network-traffic', ['protocols[2]'])
+    ob3 = EqualityComparisonExpression(lhs3, StringConstant('enip'))
+    pattern3 = ObservationExpression(AndBooleanExpression([ob2, ob3]))
+
+    indicator3 = Indicator(
+        name='ARP spoofing indicator - spoofed enip traffic',
+        description='Enip traffic originating from malicious MAC address',
+        pattern=pattern3,
+        pattern_type='stix',
+        valid_from=datetime.datetime.now()
+    )
+    stix21_object_list_MITM.append(indicator3)
+
+    print(indicator3)
 
     attack_pattern = AttackPattern(
         name='ARP Spoofing attack',
