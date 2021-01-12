@@ -67,6 +67,7 @@ def analyze_log_message_ip(message) -> str:
         except ValueError:
             pass
 
+
 def convert_pcap_frames(simulation_output):
     """Converts a list of pcap frames to PcapEntry class instances and saves objects in list."""
     pcap_frame_list = list()

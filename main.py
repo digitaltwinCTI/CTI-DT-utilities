@@ -8,6 +8,8 @@ from import_stix21_data import *
 from import_simulation_output import *
 from filter_functions import *
 from stix2.v21 import *
+from stix2 import (ObjectPath, EqualityComparisonExpression, ObservationExpression, GreaterThanComparisonExpression,
+                   IsSubsetComparisonExpression, FloatConstant, StringConstant, IntegerConstant)
 
 
 def pretty_print_list(list):
@@ -160,23 +162,140 @@ if __name__ == '__main__':
     print('-------------------------------------------')
     print('')
 
-    print('Searching the relationship list for a STIX2.1 object with specified relationship type')
-    search_list1 = search_stix21_objects(imported_sro_list, "tool",'direct')
+    '''
+    This is optional search utility can help users to query relationships for a given SCO or SDO prior to building
+    a custom relationship list. Comment out if not needed. 
+    '''
+    print('Searching the relationship list for a STIX2.1 object with specified relationship type:')
+    search_list1 = search_stix21_objects(imported_sro_list, "tool", 'direct')
     for entry in search_list1:
         print(entry)
 
     print('')
 
-    # custom_sco_list_MITM = build_sco_list(imported_sco_list)
-    # static_sco_list_MITM = get_static_mitm_sco_list()
-    custom_sdo_sro_list_MITM = build_sdosro_list(imported_sro_list, static_sco_list_MITM, 'any')
-    custom_sro_list_MITM = custom_sdo_sro_list_MITM[1]
-    custom_sco_sdo_list_MITM = custom_sdo_sro_list_MITM[0]
+    # custom_sco_list_MITM_update = build_sco_list(imported_sco_list)
+    # custom_sdo_sro_list_MITM = build_sdosro_list(imported_sro_list, static_sco_list_MITM, 'any')
+
+    print('')
+
+    # custom_sro_list_MITM = custom_sdo_sro_list_MITM[1]
+    # custom_sco_sdo_list_MITM = custom_sdo_sro_list_MITM[0]
 
     print('')
     print('-------------------------------------------')
     print('')
-    print('Generated STIX2.1 SDOs')
+
+    '''
+    Next steps:
+    - select embedded relationships between SCOs
+    - adapt SCOs: add resolves to for IP and MAC addresses
+    - infrastructure consists of IP addresses
+    - infrastructure consists of process
+    - process opened connections refs to network traffic (enip) NOT arp
+    - pattern: ip address resolves to two MAC addresses + arp traffic more than 5 present
+    '''
+
+    ip1_updated = IPv4Address(id=ip1.id, value=ip1.value, resolves_to_refs=[mac1.id, mac4.id])
+    ip2_updated = IPv4Address(value=ip2.value, resolves_to_refs=[mac2.id, mac4.id])
+    ip3_updated = IPv4Address(id=ip3.id, value=ip3.value, resolves_to_refs=[mac3.id, mac4.id])
+    stix21_object_list_MITM.remove(ip1)
+    stix21_object_list_MITM.remove(ip2)
+    stix21_object_list_MITM.remove(ip3)
+    stix21_object_list_MITM.append(ip1_updated)
+    stix21_object_list_MITM.append(ip2_updated)
+    stix21_object_list_MITM.append(ip3_updated)
+
+    nw_traffic_id_list = list()
+    for element in network_traffic_list_enip[:-1]:
+        nw_traffic_id_list.append(element.id)
+
+    process_updated = Process(id=process.id, command_line=process.command_line,
+                              opened_connection_refs=nw_traffic_id_list)
+    stix21_object_list_MITM.remove(process)
+    stix21_object_list_MITM.append(process_updated)
+
+    print('Updated IPv4 address objects and Process object:')
+    print(ip1_updated, ip2_updated, ip3_updated, process_updated)
+
+    print('')
+    print('-------------------------------------------')
+    print('')
+
+    print('Custom selected and generated STIX2.1 SDOs and SROs:')
+
+    infrastructure = Infrastructure(
+        name='Filling plant digital twin',
+        description="Digital twin representing a filling plant with three PLCs. Target of the conducted attack"
+    )
+    stix21_object_list_MITM.append(infrastructure)
+
+    rel_infra_ip1 = Relationship(source_ref=infrastructure, relationship_type='consists_of', target_ref=ip1)
+    rel_infra_ip2 = Relationship(source_ref=infrastructure, relationship_type='consists_of', target_ref=ip2)
+    rel_infra_ip3 = Relationship(source_ref=infrastructure, relationship_type='consists_of', target_ref=ip3)
+    stix21_object_list_MITM.append(rel_infra_ip1)
+    stix21_object_list_MITM.append(rel_infra_ip2)
+    stix21_object_list_MITM.append(rel_infra_ip3)
+
+    rel_infra_process = Relationship(source_ref=infrastructure, relationship_type='consists_of', target_ref=process)
+    stix21_object_list_MITM.append(rel_infra_process)
+    print(infrastructure, rel_infra_ip1, rel_infra_ip2, rel_infra_ip3, rel_infra_process)
+
+    print('')
+
+    print('Custom generated Observed Data for regular traffic, ARP traffic and spoofed traffic:')
+
+    observed_data1 = ObservedData(
+        first_observed=filtered_enip[0].timestamp,
+        last_observed=filtered_enip[5].timestamp,
+        number_observed=6,
+        object_refs=nw_traffic_id_list  # regular traffic
+    )
+    stix21_object_list_MITM.append(observed_data1)
+
+    nw_traffic_arp_id_list = list()
+    for element in network_traffic_list_arp:
+        nw_traffic_arp_id_list.append(element.id)
+
+    observed_data2 = ObservedData(
+        first_observed=filtered_arp[0].timestamp,
+        last_observed=filtered_arp[19].timestamp,
+        number_observed=20,
+        object_refs=nw_traffic_arp_id_list  # arp traffic
+    )
+    stix21_object_list_MITM.append(observed_data2)
+
+    observed_data3 = ObservedData(
+        first_observed=filtered_enip[6].timestamp,
+        last_observed=filtered_enip[6].timestamp,
+        number_observed=1,
+        object_refs=network_traffic_list_enip[6].id  # spoofed last enip entry traffic
+    )
+    stix21_object_list_MITM.append(observed_data3)
+
+    print(observed_data1, observed_data2, observed_data3)
+
+    print('')
+
+    print('Custom generated Indicator based on duplicate IP MAC resolving, ARP traffic and spoofed traffic:')
+
+    indicator = Indicator(
+        name='ARP spoofing indicator',
+        description='ARP spoofing network traffic used to intercept traffic based on MAC addresses',
+        pattern="[network_traffic:src = '00:00:00:00:00:05']",
+        pattern_type='stix',
+        valid_from=datetime.datetime.now()
+    )
+
+    lhs1 = ObjectPath("ipv4-addr", ["resolves_to_refs[*]"])
+    ob1 = EqualityComparisonExpression(lhs1, StringConstant('00:00:00:00:00:05'))
+    obe1 = ObservationExpression(ob1)
+    print("\t{}\n".format(obe1))
+
+    lhs2 = ObjectPath('network-traffic', ['scr_ref'])
+    ob2 = EqualityComparisonExpression(lhs2, StringConstant('00:00:00:00:00:05'))
+    obe2 = ObservationExpression(ob2)
+
+
     attack_pattern = AttackPattern(
         name='ARP Spoofing attack',
         description='The attacker targets the communication between network components as a MITM and uses ARP packets'
@@ -192,39 +311,16 @@ if __name__ == '__main__':
             phase_name='reconnaissance'
         )
     )
-    infrastructure = Infrastructure(
-        name='Filling plant digital twin',
-        description="Digital twin representing a filling plant with three PLCs. Target of the conducted attack"
-    )
+
     tool = Tool(
         name='Ettercap'
     )
+
     print(attack_pattern, infrastructure, tool)
-    indicator = Indicator(
-        name='ARP spoofing indicator',
-        description='ARP spoofing network traffic used to intercept traffic based on MAC addresses',
-        pattern="[network_traffic:src = '00:00:00:00:00:05']",
-        pattern_type='stix',
-        valid_from=datetime.datetime.now()
-    )
-    observed_data1 = ObservedData(
-        first_observed=datetime.datetime.now(),#replace by object timestamp
-        last_observed=datetime.datetime.now(),#replace by last object timestamp
-        number_observed=6,
-        object_refs=ip1#regular traffic
-    )
-    observed_data2 = ObservedData(
-        first_observed=datetime.datetime.now(),
-        last_observed=datetime.datetime.now(),
-        number_observed=20,
-        object_refs=ip1#arp traffic
-    )
-    observed_data3 = ObservedData(
-        first_observed=datetime.datetime.now(),#replace by object timestamp
-        last_observed=datetime.datetime.now(),#replace by last object timestamp
-        number_observed=1,
-        object_refs=ip1# traffic arp spoof last enip entry
-    )
+
+
+
+
     print('')
     print('-------------------------------------------')
     print('')
@@ -239,9 +335,7 @@ if __name__ == '__main__':
     print('')
     print('-------------------------------------------')
     print('')
-    sco_list = import_stix21_relationships("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\STIX Relationship Data\\",
-                                       "done_STIX21_SCO_list.txt")
-    pretty_print_list(filter_scos(sco_list, 'network'))
+
     print('')
     print('-------------------------------------------')
     print('')

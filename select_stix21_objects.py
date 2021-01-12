@@ -6,7 +6,7 @@ from search_stix21_objects import *
 
 
 def filter_scos(sco_list, sco_type=None):
-    """Filters list of all possible SCOs based on type of SCO (either host, network of any)."""
+    """Filters list of all possible SCOs based on type of SCO (either host, network or none)."""
     filtered_sco_list = list()
     for entry in sco_list:
         if entry[2] == sco_type.lower():
@@ -55,7 +55,7 @@ def get_static_mitm_sco_list():
 
 
 def build_sdosro_list(rel_list, scosdo_list, rel_type='any'):
-    """Allows the user to build custom STIX2.1 objects list (SCO+SDO and relationships) out of all available relatioships."""
+    """Allows the user to build a custom STIX2.1 objects list (SCO+SDO+SRO/rel) out of all available relationships."""
     rel_list_current = rel_list
     custom_scosdo_list = list()
     custom_sro_list = list()

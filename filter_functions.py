@@ -1,5 +1,5 @@
 """
-This module is intended to provide filtering functionality for the simulation output
+This module is intended to provide filtering functionality for the digital twin simulation output
 """
 
 import datetime

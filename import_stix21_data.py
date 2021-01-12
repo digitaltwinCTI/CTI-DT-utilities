@@ -1,5 +1,5 @@
 """
-This module is intended to import data about STIX objects
+This module is intended to import data about STIX2.1 objects
 """
 
 import csv
@@ -22,7 +22,7 @@ def import_static_stix21_data():
     root_dir = os.path.dirname(os.path.abspath(__file__))
     import_path = os.path.join(root_dir, 'data\\')
     sco_list = import_stix21_data(import_path, 'STIX21_SCO_list.txt')
-    print('STIX SCOs imported')
+    print('STIX2.1 SCOs imported')
     sro_list = import_stix21_data(import_path, 'STIX21_SCO_SDO_relationship_list_all.txt')
-    print('STIX relationships (embedded and direct) imported')
+    print('STIX2.1 relationships (embedded and direct) imported')
     return sco_list, sro_list
