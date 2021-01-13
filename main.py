@@ -1,8 +1,8 @@
 """
 This is the main program for CTI generation based on digital twin simulation output
 """
+import sys
 
-from search_stix21_objects import *
 from select_stix21_objects import *
 from import_stix21_data import *
 from import_simulation_output import *
@@ -21,25 +21,25 @@ def pretty_print_list(list):
 
 
 if __name__ == '__main__':
+    root_dir = os.path.dirname(os.path.abspath(__file__))
+    export_path = os.path.join(root_dir, 'results\\')
+    # sys.stdout = open(export_path+'console_output_MITM_use_case', 'w')
+
     stix21_object_list_MITM = list()
     stix21_object_list_DOS = list()
 
-    print('')
+    print('\nUSE CASE 1 -- MITM Attack:\n')
 
     imported_stix21_data = import_static_stix21_data()
     imported_sco_list = imported_stix21_data[0]
     imported_sro_list = imported_stix21_data[1]
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     # custom_sco_list_MITM = build_sco_list(imported_sco_list)
     static_sco_list_MITM = get_static_mitm_sco_list()
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     simulation_output_MITM = import_static_simulation_output()
     converted_logs_MITM = convert_log_entries(simulation_output_MITM[0])
@@ -67,9 +67,7 @@ if __name__ == '__main__':
 
     filtered_ip2 = filter_log_ip(converted_logs_MITM, '10.0.0.2', False)
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     ip1 = filtered_time[0].generate_ipv4_addr('host')
     stix21_object_list_MITM.append(ip1)
@@ -83,27 +81,21 @@ if __name__ == '__main__':
     print('Generated STIX2.1 SCOs from log entries:')
     print(ip1, ip2, ip3, process)
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     pretty_print_list(get_timespan(converted_pcap_MITM))
     print('')
 
     pretty_print_list(get_all_protocols(converted_pcap_MITM))
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     filtered_enip = filter_protocols(converted_pcap_MITM, 'eth:ethertype:ip:tcp:enip')
     print('')
 
     pretty_print_list(filtered_enip)
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     network_traffic_list_enip = list()
     for element in filtered_enip:
@@ -114,9 +106,7 @@ if __name__ == '__main__':
     print('Generated STIX2.1 network traffic SCOs from enip filtered pcap frames:')
     pretty_print_list(network_traffic_list_enip)
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     mac1 = filtered_enip[0].generate_mac_addr('src')
     stix21_object_list_MITM.append(mac1)
@@ -128,27 +118,21 @@ if __name__ == '__main__':
     print('Generated STIX2.1 MAC addresses from enip filtered pcap frames:')
     print(mac1, mac2, mac3)
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     filtered_arp = filter_protocols(converted_pcap_MITM, 'eth:ethertype:arp')
     print('')
 
     pretty_print_list(filtered_arp)
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     print('Generated STIX2.1 MAC address from arp filtered pcap frames:')
     mac4 = filtered_arp[0].generate_mac_addr('arp')
     stix21_object_list_MITM.append(mac4)
     print(mac4)
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     network_traffic_list_arp = list()
     for element in filtered_arp:
@@ -160,9 +144,7 @@ if __name__ == '__main__':
     print('Generated STIX2.1 network traffic from arp filtered pcap frames:')
     pretty_print_list(network_traffic_list_arp)
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     '''
     This is optional search utility can help users to query relationships for a given SCO or SDO prior to building
@@ -183,9 +165,7 @@ if __name__ == '__main__':
     # custom_sro_list_MITM = custom_sdo_sro_list_MITM[1]
     # custom_sco_sdo_list_MITM = custom_sdo_sro_list_MITM[0]
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     '''
     Next steps:
@@ -219,9 +199,7 @@ if __name__ == '__main__':
     print('Updated IPv4 address objects and Process object:')
     print(ip1_updated, ip2_updated, ip3_updated, process_updated)
 
-    print('')
-    print('-------------------------------------------')
-    print('')
+    print('\n-------------------------------------------\n')
 
     print('Custom selected and generated STIX2.1 SDOs and SROs:')
 
@@ -420,94 +398,17 @@ if __name__ == '__main__':
 
     bundle_MITM = Bundle(objects=stix21_object_list_MITM)
 
-    print('')
-    print('-------------------------------------------')
+    print('\n-------------------------------------------')
 
     mem = MemoryStore()
     mem.add(bundle_MITM)
     root_dir = os.path.dirname(os.path.abspath(__file__))
     export_path = os.path.join(root_dir, 'data\\')
-    mem.save_to_file(export_path+'STIX21_output_MITM_use_case.json')
-
+    # mem.save_to_file(export_path+'STIX21_output_MITM_use_case.json')
 
     print('-------------------------------------------')
-    print('')
 
-    '''Import the output of digital twin simulation'''
-    # print(import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\", "DOS.json"))
-    # test1 = import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\Filling-plant logs\\", "plc1.log")
-
-    # print(extract_timestamp(test1[0]))
-    # print(extract_timestamp(test1[0]) - datetime.timedelta(0, 7))
-
-    print('')
-    print('-------------------------------------------')
-    print('')
-
-    print('')
-    print('-------------------------------------------')
-    print('')
-    print('Build initial custom SCO list')
-    static_SCO_list = [['ipv4-addr', 'IPv4 Address Object', 'network'], ['mac-addr', 'MAC Address Object', 'network'],
-                   ['network-traffic', 'Network Traffic Object', 'network'], ['process', 'Process Object', 'host']]
-    #pretty_print_list(static_SCO_list)
-    #initial_custom_SCO_list = build_sco_list(sco_list)
-    print('')
-    #pretty_print_list(initial_custom_SCO_list)
-    print('')
-    print('-------------------------------------------')
-    print('')
-    print('Search for relationships (SCO embedded & SDO direct) of given SCO list')
-    #custom_SCO_SCO_rel_list = build_sdo_list(rel_list1, initial_custom_SCO_list)
-    #custom_SCO_SCO_rel_list = build_sdo_list(rel_list1, static_SCO_list)
-
-    #for list in custom_SCO_SCO_rel_list:
-       #pretty_print_list(custom_SCO_SCO_rel_list)
-    print('')
-    print('-------------------------------------------')
-    print('')
-
-    # custom_list = build_sco_list(test)
-    #      pretty_print_list(build_sdo_list(rel_list1, custom_list))
-
-    # print(custom_list)
-
-    # all_rel_list = import_stix21_relationships()
-
-    arp_frames = filtered_arp
-    pretty_print_list(arp_frames)
-    list_arp = list()
-    for element in arp_frames:
-        list_arp.append(element.generate_ipv4_addr())
-    #for element in list_arp:
-    #    pretty_print_list(element)
-
-    print('')
-    print('-------------------------------------------')
-    print('')
-    print('USE CASE 2 -- DOS Attack:')
-    simulation_output_log_dos1 = import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\"
-                                                     "Use Case 2\\", "plc.log")
-    simulation_output_log_dos2 = import_simulation_output("C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\"
-                                                     "Use Case 2\\", "hmi.log")
-    converted_logs_dos1 = convert_log_entries(simulation_output_log_dos1)
-    print(get_all_ip_addr(converted_logs_dos1))
-    print(get_timespan(converted_logs_dos1))
-    print(get_all_severity_level(converted_logs_dos1))
-    converted_logs_dos2 = convert_log_entries(simulation_output_log_dos2)
-    print(get_all_ip_addr(converted_logs_dos2))
-    print(get_timespan(converted_logs_dos2))
-    print(get_all_severity_level(converted_logs_dos2))
-    #pretty_print_list(converted_logs_dos1)
-
-    ip1dos = converted_logs_dos1[0].generate_ipv4_addr()
-    ip2dos = converted_logs_dos2[0].generate_ipv4_addr()
-
-    print(ip1dos, ip2dos)
-
-    print('path to data directory')
-    root_dir = os.path.dirname(os.path.abspath(__file__))
-    import_path = os.path.join(root_dir, 'data')
+    # sys.stdout.close()
 
     '''
     try:
@@ -519,6 +420,3 @@ if __name__ == '__main__':
     except ValueError:
         print("Please enter a valid number")
     '''
-
-    #indicator2 = indicator.new_version(name="File hash for Foobar malware",
-     #                                  labels=["malicious-activity"])
