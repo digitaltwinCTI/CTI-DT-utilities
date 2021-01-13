@@ -11,7 +11,7 @@ from stix2.v21 import *
 from stix2 import (ObjectPath, EqualityComparisonExpression, ObservationExpression, GreaterThanComparisonExpression,
                    IsSubsetComparisonExpression, FloatConstant, StringConstant, IntegerConstant, AndBooleanExpression,
                    FollowedByObservationExpression, RepeatQualifier, WithinQualifier, ParentheticalExpression,
-                   QualifiedObservationExpression)
+                   QualifiedObservationExpression, MemoryStore)
 
 
 def pretty_print_list(list):
@@ -244,13 +244,13 @@ if __name__ == '__main__':
 
     print('')
 
-    print('Custom generated Observed Data for regular traffic, ARP traffic and spoofed traffic:')
+    print('Custom generated Observed Data for IP addresses, regular traffic, ARP traffic and spoofed traffic:')
 
     observed_data1 = ObservedData(
-        first_observed=filtered_enip[0].timestamp,
-        last_observed=filtered_enip[5].timestamp,
-        number_observed=6,
-        object_refs=nw_traffic_id_list  # regular traffic
+        first_observed=converted_pcap_MITM[0].timestamp,
+        last_observed=converted_pcap_MITM[-1].timestamp,
+        number_observed=1,
+        object_refs=[ip1_updated.id, ip2_updated.id, ip3_updated.id]  # ip addresses
     )
     stix21_object_list_MITM.append(observed_data1)
 
@@ -267,14 +267,22 @@ if __name__ == '__main__':
     stix21_object_list_MITM.append(observed_data2)
 
     observed_data3 = ObservedData(
-        first_observed=filtered_enip[6].timestamp,
-        last_observed=filtered_enip[6].timestamp,
-        number_observed=1,
-        object_refs=network_traffic_list_enip[6].id  # spoofed last enip entry traffic
+        first_observed=filtered_enip[0].timestamp,
+        last_observed=filtered_enip[5].timestamp,
+        number_observed=6,
+        object_refs=nw_traffic_id_list  # regular traffic
     )
     stix21_object_list_MITM.append(observed_data3)
 
-    print(observed_data1, observed_data2, observed_data3)
+    observed_data4 = ObservedData(
+        first_observed=filtered_enip[6].timestamp,
+        last_observed=filtered_enip[6].timestamp,
+        number_observed=1,
+        object_refs=network_traffic_list_enip[6].id  # spoofed traffic, last enip entry
+    )
+    stix21_object_list_MITM.append(observed_data4)
+
+    print(observed_data1, observed_data2, observed_data3, observed_data4)
 
     print('')
 
@@ -331,6 +339,29 @@ if __name__ == '__main__':
 
     print(indicator3)
 
+    print('')
+
+    print('Custom generated relationships between Observed Data and Indicators:')
+
+    rel_indicator_observed1 = Relationship(source_ref=indicator1, relationship_type='based-on',
+                                           target_ref=observed_data1)
+    rel_indicator_observed2 = Relationship(source_ref=indicator2, relationship_type='based-on',
+                                           target_ref= observed_data2)
+    rel_indicator_observed3 = Relationship(source_ref=indicator3, relationship_type='based-on',
+                                           target_ref=observed_data4)
+    rel_indicator_observed4 = Relationship(source_ref=indicator3, relationship_type='based-on',
+                                           target_ref=observed_data3)
+    stix21_object_list_MITM.append(rel_indicator_observed1)
+    stix21_object_list_MITM.append(rel_indicator_observed2)
+    stix21_object_list_MITM.append(rel_indicator_observed3)
+    stix21_object_list_MITM.append(rel_indicator_observed4)
+
+    print(rel_indicator_observed1, rel_indicator_observed2, rel_indicator_observed3, rel_indicator_observed4)
+
+    print('')
+
+    print('Custom generated Attack Pattern, Tool and additional relationships:')
+
     attack_pattern = AttackPattern(
         name='ARP Spoofing attack',
         description='The attacker targets the communication between network components as a MITM and uses ARP packets'
@@ -346,17 +377,59 @@ if __name__ == '__main__':
             phase_name='reconnaissance'
         )
     )
+    stix21_object_list_MITM.append(attack_pattern)
 
     tool = Tool(
         name='Ettercap'
     )
+    stix21_object_list_MITM.append(tool)
 
-    print(attack_pattern, infrastructure, tool)
+    print(attack_pattern, tool)
 
+    rel_indicator_attack1 = Relationship(source_ref=indicator1, relationship_type='indicates',
+                                         target_ref=attack_pattern)
+    rel_indicator_attack2 = Relationship(source_ref=indicator2, relationship_type='indicates',
+                                         target_ref=attack_pattern)
+    rel_indicator_attack3 = Relationship(source_ref=indicator3, relationship_type='indicates',
+                                         target_ref=attack_pattern)
+    rel_attack_tool = Relationship(source_ref=attack_pattern, relationship_type='uses', target_ref=tool)
+    stix21_object_list_MITM.append(rel_indicator_attack1)
+    stix21_object_list_MITM.append(rel_indicator_attack2)
+    stix21_object_list_MITM.append(rel_indicator_attack3)
+    stix21_object_list_MITM.append(rel_attack_tool)
 
+    print(rel_indicator_attack1, rel_indicator_attack2, rel_indicator_attack3, rel_attack_tool)
 
+    MITM_id_list = list()
+    for element in stix21_object_list_MITM:
+        MITM_id_list.append(element.id)
 
     print('')
+
+    print('Generated Report for the Digital Twin MITM simulation use case:')
+
+    report_MITM = Report(
+        name='Digital Twin based MITM attack simulation with ARP spoofing',
+        description='This report describes a simulated MITM attack on a filling plant using a digital twin in'
+                    ' simulation mode. The attack is based on ARP spoofing.',
+        published=datetime.datetime.now(),
+        object_refs=MITM_id_list
+    )
+
+    print(report_MITM)
+
+    bundle_MITM = Bundle(objects=stix21_object_list_MITM)
+
+    print('')
+    print('-------------------------------------------')
+
+    mem = MemoryStore()
+    mem.add(bundle_MITM)
+    root_dir = os.path.dirname(os.path.abspath(__file__))
+    export_path = os.path.join(root_dir, 'data\\')
+    mem.save_to_file(export_path+'STIX21_output_MITM_use_case.json')
+
+
     print('-------------------------------------------')
     print('')
 
