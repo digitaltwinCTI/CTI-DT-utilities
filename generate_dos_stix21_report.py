@@ -24,7 +24,7 @@ if __name__ == '__main__':
     root_dir = os.path.dirname(os.path.abspath(__file__))
     import_path = os.path.join(root_dir, 'data\\')
     export_path = os.path.join(root_dir, 'results\\')
-    sys.stdout = open(export_path+'console_output_DoS_use_case', 'w')
+    #sys.stdout = open(export_path+'console_output_DoS_use_case', 'w')
 
     stix21_object_list_DOS = list()
 
@@ -44,11 +44,8 @@ if __name__ == '__main__':
         import_path, "use_case_2_plc.log"))
     converted_logs_DOS2 = convert_log_entries(import_simulation_output(
         import_path, "use_case_2_hmi.log"))
-    converted_pcap_DOS = convert_log_entries(import_simulation_output(
-       import_path, "use_case_1_network_traffic.json"))
-    #converted_pcap_DOS = convert_pcap_frames(import_simulation_output(
-     #   "C:\\Users\\LocalAdmin\\Documents\\04_DT CTI\\Simulation Output\\"
-      #  "Use Case 2\\", "synflood2.json"))
+    converted_pcap_DOS = convert_pcap_frames(import_simulation_output(
+        import_path, "use_case_2_network_traffic.json"))
 
     print('')
 
