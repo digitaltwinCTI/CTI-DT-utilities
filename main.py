@@ -393,6 +393,7 @@ if __name__ == '__main__':
         published=datetime.datetime.now(),
         object_refs=MITM_id_list
     )
+    stix21_object_list_MITM.append(report_MITM)
 
     print(report_MITM)
 

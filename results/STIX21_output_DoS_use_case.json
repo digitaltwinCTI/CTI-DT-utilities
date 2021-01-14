@@ -1,0 +1,1652 @@
+{
+    "type": "bundle",
+    "id": "bundle--cf413a37-98c8-44db-9e39-4958a6ebe656",
+    "objects": [
+        {
+            "type": "ipv4-addr",
+            "id": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+            "value": "10.0.0.1",
+            "spec_version": "2.1"
+        },
+        {
+            "type": "process",
+            "id": "process--cdf58ec8-1a37-41e4-b171-a99529e1a48b",
+            "command_line": "main_loop",
+            "spec_version": "2.1"
+        },
+        {
+            "type": "mac-addr",
+            "id": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "value": "00:00:00:00:00:03",
+            "spec_version": "2.1"
+        },
+        {
+            "type": "mac-addr",
+            "id": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "value": "00:00:00:00:00:01",
+            "spec_version": "2.1"
+        },
+        {
+            "type": "mac-addr",
+            "id": "mac-addr--d9afe622-4c97-507c-bab7-78e8e93ef2bc",
+            "value": "00:00:00:00:00:02",
+            "spec_version": "2.1"
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--4e2c08e1-50fc-528e-8ff1-f153e02680d6",
+            "start": "2020-08-28T14:37:09.996182Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--d2056f30-600e-5229-be2d-b9f3e03f1631",
+            "start": "2020-08-28T14:37:09.996187Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--7a04d866-8344-5ff6-8ded-050685dfe731",
+            "start": "2020-08-28T14:37:09.996193Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--484a7d08-940b-5183-8d00-c84abe0f4b07",
+            "start": "2020-08-28T14:37:09.996199Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--7e60dc58-119b-506a-b165-cb71b4d864bc",
+            "start": "2020-08-28T14:37:09.996204Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--42cb8c07-38b9-50d0-9c47-eec148d72893",
+            "start": "2020-08-28T14:37:09.99621Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--23be5dff-1a5f-597c-a791-ac25ee56f90d",
+            "start": "2020-08-28T14:37:09.996215Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--76794fa5-ef98-5d0e-a1ee-c8adf1b83c0b",
+            "start": "2020-08-28T14:37:10.008198Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--70546004-da0f-569b-b5e1-b01e8a0991d7",
+            "start": "2020-08-28T14:37:10.008413Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--2093931e-63c3-56db-81fe-b45252982a09",
+            "start": "2020-08-28T14:37:10.008515Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--356ac21e-b41f-5c74-978b-11388e2f6f8a",
+            "start": "2020-08-28T14:37:10.008602Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--c7a883e6-b7b5-5385-8bfb-db9dbc6762e3",
+            "start": "2020-08-28T14:37:10.008719Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--cc235d42-5997-51ff-b674-fc17a513576e",
+            "start": "2020-08-28T14:37:10.008813Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--0f6075df-1aa3-5a6e-a7e7-9191ff237c22",
+            "start": "2020-08-28T14:37:10.008903Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--3f3c7fd0-1b5b-5c32-8d22-6806794d6b2f",
+            "start": "2020-08-28T14:37:10.008993Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--2976a7e3-9d91-5b05-acc1-b13adc4a8061",
+            "start": "2020-08-28T14:37:10.009083Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--0bfd006c-76c7-5e89-b123-6c71802f8934",
+            "start": "2020-08-28T14:37:10.009192Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--ca2fff8b-1589-55cc-a57a-5195cc95e9fc",
+            "start": "2020-08-28T14:37:10.009283Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--81d1028a-3edb-532e-aa7d-b969912fe88e",
+            "start": "2020-08-28T14:37:10.009372Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--8c66ea05-d842-51b5-9d99-711edc4635a4",
+            "start": "2020-08-28T14:37:10.009461Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--74ec1cc3-553d-5974-915c-859bcd1b77b4",
+            "start": "2020-08-28T14:37:10.00955Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--e47c60d4-8e54-5f66-b879-f7da91da57fb",
+            "start": "2020-08-28T14:37:10.009661Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--f3c375ac-153e-5b04-9ce6-b2090b20b47d",
+            "start": "2020-08-28T14:37:10.00973Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--5f00e206-38de-570d-a8ef-5ead02ed17af",
+            "start": "2020-08-28T14:37:10.009788Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--5b00e601-6bd4-52aa-95ef-a1c6a6db7b58",
+            "start": "2020-08-28T14:37:10.009858Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--d21c27ed-6f5d-5c2c-8040-b69c0ec8ee11",
+            "start": "2020-08-28T14:37:10.009946Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--0797e790-bd5c-5d1a-aa03-f36a219508ac",
+            "start": "2020-08-28T14:37:10.010053Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--2a5ea5c7-a4b2-5b71-b4e9-170a1473a146",
+            "start": "2020-08-28T14:37:10.010158Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--5517843e-3012-544e-8cea-60942309b23a",
+            "start": "2020-08-28T14:37:10.010273Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--ac01634d-b8bd-5cdc-bdd5-97f0571b47c0",
+            "start": "2020-08-28T14:37:10.010363Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--03609cb7-0f1c-5802-b280-6e9d3b5b38b7",
+            "start": "2020-08-28T14:37:10.010452Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--073a5501-e014-58ea-b210-eb8f79b49b1b",
+            "start": "2020-08-28T14:37:10.01054Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--8a6ea20d-a77c-5c55-b32d-961a9ccafd70",
+            "start": "2020-08-28T14:37:10.010629Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--0dc10a36-0d8a-5e61-aecd-4ad2f13fe434",
+            "start": "2020-08-28T14:37:10.010766Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--cc2a3f9d-3f1d-5cd4-b2e9-0565345a7e55",
+            "start": "2020-08-28T14:37:10.01086Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--6db7397b-f440-5f27-b24d-e104a7362a1f",
+            "start": "2020-08-28T14:37:10.010945Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--e1480b24-6010-5a4e-bb0d-647ff907ec95",
+            "start": "2020-08-28T14:37:10.011034Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--3dcb4484-e3e8-52b3-a1dc-049482cc0eda",
+            "start": "2020-08-28T14:37:10.011123Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--3de4baca-ba5f-5804-8d0f-e4abb223ea18",
+            "start": "2020-08-28T14:37:10.011248Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--36716953-2414-5ed8-8a71-dd5480884d73",
+            "start": "2020-08-28T14:37:10.01134Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--56f90671-cf4d-5b7c-8949-de161624abf7",
+            "start": "2020-08-28T14:37:10.011431Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--c4c41c91-1614-514b-ab0d-250639d77ea0",
+            "start": "2020-08-28T14:37:10.011521Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--4cbdde33-1216-5fe3-9800-24aa9433c7b8",
+            "start": "2020-08-28T14:37:10.011641Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--640bede0-a2b4-5fa9-ae28-a20ab4cb7dfe",
+            "start": "2020-08-28T14:37:10.011771Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--fef8f128-a933-52b5-94b5-5b75ebe2855d",
+            "start": "2020-08-28T14:37:10.011871Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--84e75196-9ef3-596b-a730-5da1ae344702",
+            "start": "2020-08-28T14:37:10.011962Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--5aa0d19d-6749-5519-bf3d-13c281fe99b8",
+            "start": "2020-08-28T14:37:10.012051Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--c75dbdb0-737e-5e98-8726-3adff5bdb88c",
+            "start": "2020-08-28T14:37:10.012278Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--379739da-f112-53c7-970e-65697568d287",
+            "start": "2020-08-28T14:37:10.012351Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--8f7dfbd5-b608-5dc7-b275-f40738c9bbd3",
+            "start": "2020-08-28T14:37:10.01241Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--65387eb6-d637-5513-89f1-4a6968307235",
+            "start": "2020-08-28T14:37:10.014026Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--b5bc1731-e0eb-5fff-b20a-36920b7f3676",
+            "start": "2020-08-28T14:37:10.014134Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--bdb3c98a-3182-5411-82df-988d6725e868",
+            "start": "2020-08-28T14:37:10.014224Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--78ee2306-d3e8-5c23-880f-7872b4a51bcc",
+            "start": "2020-08-28T14:37:10.014307Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--ee62bd61-77ff-552b-b9af-3e0f5ebc4a23",
+            "start": "2020-08-28T14:37:10.014403Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--2ed1e32a-f765-589c-bacc-10ee6bd1aa6d",
+            "start": "2020-08-28T14:37:10.01449Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--06bcd0ab-730c-5ca5-adf4-79a50e5be4a3",
+            "start": "2020-08-28T14:37:10.014597Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--9379ad44-65a3-5433-8571-674694492280",
+            "start": "2020-08-28T14:37:10.014663Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--ade05843-a07e-54e1-95c5-3853878b8c52",
+            "start": "2020-08-28T14:37:10.014747Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--eebbdf0e-a5cd-5c54-81dd-732cab761441",
+            "start": "2020-08-28T14:37:10.014842Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--028275e2-5300-5177-b50f-7e0b67ea4a11",
+            "start": "2020-08-28T14:37:10.01493Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--6eef263d-f202-5640-afe0-472d0413a093",
+            "start": "2020-08-28T14:37:10.015019Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--b36519eb-eca4-5c34-9896-c41e86621edd",
+            "start": "2020-08-28T14:37:10.015135Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--6c44527b-1b9c-5f67-952a-768d3d66a421",
+            "start": "2020-08-28T14:37:10.015226Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--871a539f-a3e3-5d89-8b6e-22dff17310a1",
+            "start": "2020-08-28T14:37:10.015315Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--af58e647-9810-576c-9d37-058a7e3ec889",
+            "start": "2020-08-28T14:37:10.015405Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--6ea99dee-909d-582d-8b50-320278fe9c45",
+            "start": "2020-08-28T14:37:10.015496Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--8fc08814-5ec5-5aa6-a77d-7ac784472832",
+            "start": "2020-08-28T14:37:10.01559Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--ce65e24e-b05c-5a94-8173-3c3b9b949270",
+            "start": "2020-08-28T14:37:10.015799Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--a1241a0d-5892-5dbd-89ce-90bdc7b84a08",
+            "start": "2020-08-28T14:37:10.015903Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--822b3a58-7682-5274-8ff9-e69a7f33a92e",
+            "start": "2020-08-28T14:37:10.015995Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--14472d3a-174b-55e8-b349-d141767045e8",
+            "start": "2020-08-28T14:37:10.016152Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--17e355bc-5586-583b-abe0-05b0e5a79555",
+            "start": "2020-08-28T14:37:10.016221Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--a1df96c7-f035-53cd-85d3-6c3c1acf55fa",
+            "start": "2020-08-28T14:37:10.01628Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--f3480aaa-a3ae-518e-964e-f6d97af8866f",
+            "start": "2020-08-28T14:37:10.01634Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--df6f63ac-e1d1-53dd-8bf7-eb93775a8b75",
+            "start": "2020-08-28T14:37:10.016398Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--22832528-6fa0-55cb-807a-9830c7a85b19",
+            "start": "2020-08-28T14:37:10.016471Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--277db0c4-31b9-5591-94f5-ad17b6e62682",
+            "start": "2020-08-28T14:37:10.016574Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--b5e31d66-ad2a-5681-9cd0-2125b6a82f40",
+            "start": "2020-08-28T14:37:10.016707Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--5aeb77c6-78d5-5445-a2e6-8c2dd13f7997",
+            "start": "2020-08-28T14:37:10.016795Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--35f47dbb-e6d1-5d9f-95ff-b18a76d3c200",
+            "start": "2020-08-28T14:37:10.016883Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--ca9a2191-3a86-5c19-8063-890ddcf66c75",
+            "start": "2020-08-28T14:37:10.016891Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--1253287e-4be6-5989-b808-fffc4ddf4b75",
+            "start": "2020-08-28T14:37:10.016897Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--b0b6a79f-28f8-5190-ac37-79ec83e196da",
+            "start": "2020-08-28T14:37:10.016904Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--05b0e08f-9d7e-5927-9eae-752190498675",
+            "start": "2020-08-28T14:37:10.016909Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--7d85ab21-2e43-5de9-a227-17e429e7ac99",
+            "start": "2020-08-28T14:37:10.016915Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--e939fd7e-c7ee-5cf8-9fe2-d74642db5a86",
+            "start": "2020-08-28T14:37:10.016921Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--9d6c8954-5bfd-5cdc-b7e2-3749b5d5d8e1",
+            "start": "2020-08-28T14:37:10.016926Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--3192a97b-c251-5b6d-bd6e-dd8ed4b7e329",
+            "start": "2020-08-28T14:37:10.016932Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--b658f7d8-3b7a-54aa-a601-bfb5058f1a90",
+            "start": "2020-08-28T14:37:10.016938Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--49f238f2-79cc-5c34-b789-b2a624c284c8",
+            "start": "2020-08-28T14:37:10.016944Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--b5e1d2a2-d274-5c29-a15a-fb560dc32f9e",
+            "start": "2020-08-28T14:37:10.016949Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--6f0a17b7-a12e-508b-a454-8e30cd0f6b14",
+            "start": "2020-08-28T14:37:10.016955Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--40bfeaf0-bb27-57f7-bda1-56fda27ab0a7",
+            "start": "2020-08-28T14:37:10.016961Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--236dfb3f-413f-5c88-87d9-22f8eec87aac",
+            "start": "2020-08-28T14:37:10.016966Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--433e9767-a9f6-5a83-b954-433568fd6050",
+            "start": "2020-08-28T14:37:10.016972Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--2b75ce22-3a25-5db4-9c1c-6cb84e0990fa",
+            "start": "2020-08-28T14:37:10.016977Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--d3b9916a-be0b-5fae-b734-ee402f3840e1",
+            "start": "2020-08-28T14:37:10.016984Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--309d7ffb-2055-5e02-9ef5-4d4eeca8b74e",
+            "start": "2020-08-28T14:37:10.016989Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "network-traffic",
+            "id": "network-traffic--137effae-7a92-5899-82ff-aebc015bb79d",
+            "start": "2020-08-28T14:37:10.016995Z",
+            "src_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+            "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+            "spec_version": "2.1",
+            "protocols": [
+                "eth",
+                "tcp"
+            ]
+        },
+        {
+            "type": "ipv4-addr",
+            "id": "ipv4-addr--48a7c3d8-855f-547b-ad6e-a717a7ca79f1",
+            "value": "10.0.0.2",
+            "resolves_to_refs": [
+                "mac-addr--d9afe622-4c97-507c-bab7-78e8e93ef2bc",
+                "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8"
+            ],
+            "spec_version": "2.1"
+        },
+        {
+            "type": "infrastructure",
+            "id": "infrastructure--023b2695-8711-44f1-94cd-015161de8640",
+            "created": "2021-01-14T17:43:23.11654Z",
+            "modified": "2021-01-14T17:43:23.11654Z",
+            "spec_version": "2.1",
+            "name": "Conyeor belt digital twin",
+            "description": "Digital twin representing a conveyor belt with HMI and PLC. Target of the conducted attack"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--a586c431-db6f-4789-9cc4-416aaab28b19",
+            "created": "2021-01-14T17:43:23.11654Z",
+            "modified": "2021-01-14T17:43:23.11654Z",
+            "spec_version": "2.1",
+            "relationship_type": "consists_of",
+            "source_ref": "infrastructure--023b2695-8711-44f1-94cd-015161de8640",
+            "target_ref": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--32666b3d-8f29-4225-aa47-e842787620b6",
+            "created": "2021-01-14T17:43:23.11654Z",
+            "modified": "2021-01-14T17:43:23.11654Z",
+            "spec_version": "2.1",
+            "relationship_type": "consists_of",
+            "source_ref": "infrastructure--023b2695-8711-44f1-94cd-015161de8640",
+            "target_ref": "ipv4-addr--48a7c3d8-855f-547b-ad6e-a717a7ca79f1"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--46e821aa-1d29-4db1-80a3-2d6eae11fece",
+            "created": "2021-01-14T17:43:23.11654Z",
+            "modified": "2021-01-14T17:43:23.11654Z",
+            "spec_version": "2.1",
+            "relationship_type": "consists_of",
+            "source_ref": "infrastructure--023b2695-8711-44f1-94cd-015161de8640",
+            "target_ref": "process--cdf58ec8-1a37-41e4-b171-a99529e1a48b"
+        },
+        {
+            "type": "observed-data",
+            "id": "observed-data--1657e036-9b55-4ee9-b509-9d2eeca846d4",
+            "created": "2021-01-14T17:43:23.11855Z",
+            "modified": "2021-01-14T17:43:23.11855Z",
+            "first_observed": "2020-08-28T12:35:55Z",
+            "spec_version": "2.1",
+            "last_observed": "2020-08-28T12:37:15Z",
+            "number_observed": 1,
+            "object_refs": [
+                "ipv4-addr--48a7c3d8-855f-547b-ad6e-a717a7ca79f1"
+            ]
+        },
+        {
+            "type": "observed-data",
+            "id": "observed-data--ce5fc4ac-ca08-4e5d-b355-4712271ff2cf",
+            "created": "2021-01-14T17:43:23.11855Z",
+            "modified": "2021-01-14T17:43:23.11855Z",
+            "first_observed": "2020-08-28T14:37:09.996182Z",
+            "spec_version": "2.1",
+            "last_observed": "2020-08-28T14:37:10.486396Z",
+            "number_observed": 100,
+            "object_refs": [
+                "network-traffic--4e2c08e1-50fc-528e-8ff1-f153e02680d6",
+                "network-traffic--d2056f30-600e-5229-be2d-b9f3e03f1631",
+                "network-traffic--7a04d866-8344-5ff6-8ded-050685dfe731",
+                "network-traffic--484a7d08-940b-5183-8d00-c84abe0f4b07",
+                "network-traffic--7e60dc58-119b-506a-b165-cb71b4d864bc",
+                "network-traffic--42cb8c07-38b9-50d0-9c47-eec148d72893",
+                "network-traffic--23be5dff-1a5f-597c-a791-ac25ee56f90d",
+                "network-traffic--76794fa5-ef98-5d0e-a1ee-c8adf1b83c0b",
+                "network-traffic--70546004-da0f-569b-b5e1-b01e8a0991d7",
+                "network-traffic--2093931e-63c3-56db-81fe-b45252982a09",
+                "network-traffic--356ac21e-b41f-5c74-978b-11388e2f6f8a",
+                "network-traffic--c7a883e6-b7b5-5385-8bfb-db9dbc6762e3",
+                "network-traffic--cc235d42-5997-51ff-b674-fc17a513576e",
+                "network-traffic--0f6075df-1aa3-5a6e-a7e7-9191ff237c22",
+                "network-traffic--3f3c7fd0-1b5b-5c32-8d22-6806794d6b2f",
+                "network-traffic--2976a7e3-9d91-5b05-acc1-b13adc4a8061",
+                "network-traffic--0bfd006c-76c7-5e89-b123-6c71802f8934",
+                "network-traffic--ca2fff8b-1589-55cc-a57a-5195cc95e9fc",
+                "network-traffic--81d1028a-3edb-532e-aa7d-b969912fe88e",
+                "network-traffic--8c66ea05-d842-51b5-9d99-711edc4635a4",
+                "network-traffic--74ec1cc3-553d-5974-915c-859bcd1b77b4",
+                "network-traffic--e47c60d4-8e54-5f66-b879-f7da91da57fb",
+                "network-traffic--f3c375ac-153e-5b04-9ce6-b2090b20b47d",
+                "network-traffic--5f00e206-38de-570d-a8ef-5ead02ed17af",
+                "network-traffic--5b00e601-6bd4-52aa-95ef-a1c6a6db7b58",
+                "network-traffic--d21c27ed-6f5d-5c2c-8040-b69c0ec8ee11",
+                "network-traffic--0797e790-bd5c-5d1a-aa03-f36a219508ac",
+                "network-traffic--2a5ea5c7-a4b2-5b71-b4e9-170a1473a146",
+                "network-traffic--5517843e-3012-544e-8cea-60942309b23a",
+                "network-traffic--ac01634d-b8bd-5cdc-bdd5-97f0571b47c0",
+                "network-traffic--03609cb7-0f1c-5802-b280-6e9d3b5b38b7",
+                "network-traffic--073a5501-e014-58ea-b210-eb8f79b49b1b",
+                "network-traffic--8a6ea20d-a77c-5c55-b32d-961a9ccafd70",
+                "network-traffic--0dc10a36-0d8a-5e61-aecd-4ad2f13fe434",
+                "network-traffic--cc2a3f9d-3f1d-5cd4-b2e9-0565345a7e55",
+                "network-traffic--6db7397b-f440-5f27-b24d-e104a7362a1f",
+                "network-traffic--e1480b24-6010-5a4e-bb0d-647ff907ec95",
+                "network-traffic--3dcb4484-e3e8-52b3-a1dc-049482cc0eda",
+                "network-traffic--3de4baca-ba5f-5804-8d0f-e4abb223ea18",
+                "network-traffic--36716953-2414-5ed8-8a71-dd5480884d73",
+                "network-traffic--56f90671-cf4d-5b7c-8949-de161624abf7",
+                "network-traffic--c4c41c91-1614-514b-ab0d-250639d77ea0",
+                "network-traffic--4cbdde33-1216-5fe3-9800-24aa9433c7b8",
+                "network-traffic--640bede0-a2b4-5fa9-ae28-a20ab4cb7dfe",
+                "network-traffic--fef8f128-a933-52b5-94b5-5b75ebe2855d",
+                "network-traffic--84e75196-9ef3-596b-a730-5da1ae344702",
+                "network-traffic--5aa0d19d-6749-5519-bf3d-13c281fe99b8",
+                "network-traffic--c75dbdb0-737e-5e98-8726-3adff5bdb88c",
+                "network-traffic--379739da-f112-53c7-970e-65697568d287",
+                "network-traffic--8f7dfbd5-b608-5dc7-b275-f40738c9bbd3",
+                "network-traffic--65387eb6-d637-5513-89f1-4a6968307235",
+                "network-traffic--b5bc1731-e0eb-5fff-b20a-36920b7f3676",
+                "network-traffic--bdb3c98a-3182-5411-82df-988d6725e868",
+                "network-traffic--78ee2306-d3e8-5c23-880f-7872b4a51bcc",
+                "network-traffic--ee62bd61-77ff-552b-b9af-3e0f5ebc4a23",
+                "network-traffic--2ed1e32a-f765-589c-bacc-10ee6bd1aa6d",
+                "network-traffic--06bcd0ab-730c-5ca5-adf4-79a50e5be4a3",
+                "network-traffic--9379ad44-65a3-5433-8571-674694492280",
+                "network-traffic--ade05843-a07e-54e1-95c5-3853878b8c52",
+                "network-traffic--eebbdf0e-a5cd-5c54-81dd-732cab761441",
+                "network-traffic--028275e2-5300-5177-b50f-7e0b67ea4a11",
+                "network-traffic--6eef263d-f202-5640-afe0-472d0413a093",
+                "network-traffic--b36519eb-eca4-5c34-9896-c41e86621edd",
+                "network-traffic--6c44527b-1b9c-5f67-952a-768d3d66a421",
+                "network-traffic--871a539f-a3e3-5d89-8b6e-22dff17310a1",
+                "network-traffic--af58e647-9810-576c-9d37-058a7e3ec889",
+                "network-traffic--6ea99dee-909d-582d-8b50-320278fe9c45",
+                "network-traffic--8fc08814-5ec5-5aa6-a77d-7ac784472832",
+                "network-traffic--ce65e24e-b05c-5a94-8173-3c3b9b949270",
+                "network-traffic--a1241a0d-5892-5dbd-89ce-90bdc7b84a08",
+                "network-traffic--822b3a58-7682-5274-8ff9-e69a7f33a92e",
+                "network-traffic--14472d3a-174b-55e8-b349-d141767045e8",
+                "network-traffic--17e355bc-5586-583b-abe0-05b0e5a79555",
+                "network-traffic--a1df96c7-f035-53cd-85d3-6c3c1acf55fa",
+                "network-traffic--f3480aaa-a3ae-518e-964e-f6d97af8866f",
+                "network-traffic--df6f63ac-e1d1-53dd-8bf7-eb93775a8b75",
+                "network-traffic--22832528-6fa0-55cb-807a-9830c7a85b19",
+                "network-traffic--277db0c4-31b9-5591-94f5-ad17b6e62682",
+                "network-traffic--b5e31d66-ad2a-5681-9cd0-2125b6a82f40",
+                "network-traffic--5aeb77c6-78d5-5445-a2e6-8c2dd13f7997",
+                "network-traffic--35f47dbb-e6d1-5d9f-95ff-b18a76d3c200",
+                "network-traffic--ca9a2191-3a86-5c19-8063-890ddcf66c75",
+                "network-traffic--1253287e-4be6-5989-b808-fffc4ddf4b75",
+                "network-traffic--b0b6a79f-28f8-5190-ac37-79ec83e196da",
+                "network-traffic--05b0e08f-9d7e-5927-9eae-752190498675",
+                "network-traffic--7d85ab21-2e43-5de9-a227-17e429e7ac99",
+                "network-traffic--e939fd7e-c7ee-5cf8-9fe2-d74642db5a86",
+                "network-traffic--9d6c8954-5bfd-5cdc-b7e2-3749b5d5d8e1",
+                "network-traffic--3192a97b-c251-5b6d-bd6e-dd8ed4b7e329",
+                "network-traffic--b658f7d8-3b7a-54aa-a601-bfb5058f1a90",
+                "network-traffic--49f238f2-79cc-5c34-b789-b2a624c284c8",
+                "network-traffic--b5e1d2a2-d274-5c29-a15a-fb560dc32f9e",
+                "network-traffic--6f0a17b7-a12e-508b-a454-8e30cd0f6b14",
+                "network-traffic--40bfeaf0-bb27-57f7-bda1-56fda27ab0a7",
+                "network-traffic--236dfb3f-413f-5c88-87d9-22f8eec87aac",
+                "network-traffic--433e9767-a9f6-5a83-b954-433568fd6050",
+                "network-traffic--2b75ce22-3a25-5db4-9c1c-6cb84e0990fa",
+                "network-traffic--d3b9916a-be0b-5fae-b734-ee402f3840e1",
+                "network-traffic--309d7ffb-2055-5e02-9ef5-4d4eeca8b74e",
+                "network-traffic--137effae-7a92-5899-82ff-aebc015bb79d"
+            ]
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--2fd45d43-0955-459b-9558-5ab02ce75a5e",
+            "created": "2021-01-14T17:43:23.123642Z",
+            "modified": "2021-01-14T17:43:23.123642Z",
+            "name": "Spoofing indicator - duplicate IP address",
+            "spec_version": "2.1",
+            "description": "IP address resolves to two different MAC addresses",
+            "pattern": "[ipv4-addr:resolves_to_refs[0] NOT = '00:00:00:00:00:03' AND ipv4-addr:resolves_to_refs[1] = '00:00:00:00:00:03']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2021-01-14T18:43:23.123642Z"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--bfe86cda-21dd-4508-a8eb-03c67ea2494f",
+            "created": "2021-01-14T17:43:23.141474Z",
+            "modified": "2021-01-14T17:43:23.141474Z",
+            "name": "SYN flooding indicator",
+            "spec_version": "2.1",
+            "description": "Highly repetitive tcp network traffic originating from malicious MAC address",
+            "pattern": "[network-traffic:scr_ref = '00:00:00:00:00:03' AND network-traffic:dst_ref = '00:00:00:00:00:01' AND network-traffic:protocols[1] = 'tcp'] REPEATS 100 TIMES WITHIN 1 SECONDS",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2021-01-14T18:43:23.141474Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--d383364f-e889-4a60-8cdd-0eeac74f209c",
+            "created": "2021-01-14T17:43:23.152485Z",
+            "modified": "2021-01-14T17:43:23.152485Z",
+            "spec_version": "2.1",
+            "relationship_type": "based-on",
+            "source_ref": "indicator--2fd45d43-0955-459b-9558-5ab02ce75a5e",
+            "target_ref": "observed-data--1657e036-9b55-4ee9-b509-9d2eeca846d4"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--1a47ef7e-f499-443b-b71e-85780200cf12",
+            "created": "2021-01-14T17:43:23.152485Z",
+            "modified": "2021-01-14T17:43:23.152485Z",
+            "spec_version": "2.1",
+            "relationship_type": "based-on",
+            "source_ref": "indicator--bfe86cda-21dd-4508-a8eb-03c67ea2494f",
+            "target_ref": "observed-data--ce5fc4ac-ca08-4e5d-b355-4712271ff2cf"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--67222f5b-55c0-45b4-957e-0fb664238159",
+            "created": "2021-01-14T17:43:23.153442Z",
+            "modified": "2021-01-14T17:43:23.153442Z",
+            "name": "DoS SYN flooding attack",
+            "spec_version": "2.1",
+            "description": "The attacker executes a Denial of Service attack with TCP SYN requests consuming the resources of its target",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "lockheed-martin-cyber-kill-chain",
+                    "phase_name": "actions-on-objective"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "capec",
+                    "external_id": "CAPEC-125"
+                },
+                {
+                    "source_name": "capec",
+                    "external_id": "CAPEC-482"
+                }
+            ]
+        },
+        {
+            "type": "tool",
+            "id": "tool--14a2abcd-85dd-4b30-aa1c-9e09808588f7",
+            "created": "2021-01-14T17:43:23.154439Z",
+            "modified": "2021-01-14T17:43:23.154439Z",
+            "name": "hping3",
+            "spec_version": "2.1"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--c773f287-828b-43ca-a849-2fa78a9ee12f",
+            "created": "2021-01-14T17:43:23.155436Z",
+            "modified": "2021-01-14T17:43:23.155436Z",
+            "spec_version": "2.1",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2fd45d43-0955-459b-9558-5ab02ce75a5e",
+            "target_ref": "attack-pattern--67222f5b-55c0-45b4-957e-0fb664238159"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--1a9243f8-ff83-41d0-b60f-a69998a9bad3",
+            "created": "2021-01-14T17:43:23.156434Z",
+            "modified": "2021-01-14T17:43:23.156434Z",
+            "spec_version": "2.1",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--bfe86cda-21dd-4508-a8eb-03c67ea2494f",
+            "target_ref": "attack-pattern--67222f5b-55c0-45b4-957e-0fb664238159"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--8a5781de-74c6-4e51-84a6-b26d895b88c1",
+            "created": "2021-01-14T17:43:23.156434Z",
+            "modified": "2021-01-14T17:43:23.156434Z",
+            "spec_version": "2.1",
+            "relationship_type": "uses",
+            "source_ref": "attack-pattern--67222f5b-55c0-45b4-957e-0fb664238159",
+            "target_ref": "tool--14a2abcd-85dd-4b30-aa1c-9e09808588f7"
+        },
+        {
+            "type": "report",
+            "id": "report--4890b7b2-0806-4484-9235-f1df37dfc2cd",
+            "created": "2021-01-14T17:43:23.158473Z",
+            "modified": "2021-01-14T17:43:23.158473Z",
+            "name": "Digital Twin based DoS attack simulation with SYN flooding",
+            "spec_version": "2.1",
+            "description": "This report describes a simulated DoS attack on a conveyor belt using a digital twin in simulation mode. The attack is based on repeatedly spoofed TCP traffic.",
+            "published": "2021-01-14T18:43:23.158473Z",
+            "object_refs": [
+                "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+                "process--cdf58ec8-1a37-41e4-b171-a99529e1a48b",
+                "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+                "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+                "mac-addr--d9afe622-4c97-507c-bab7-78e8e93ef2bc",
+                "network-traffic--4e2c08e1-50fc-528e-8ff1-f153e02680d6",
+                "network-traffic--d2056f30-600e-5229-be2d-b9f3e03f1631",
+                "network-traffic--7a04d866-8344-5ff6-8ded-050685dfe731",
+                "network-traffic--484a7d08-940b-5183-8d00-c84abe0f4b07",
+                "network-traffic--7e60dc58-119b-506a-b165-cb71b4d864bc",
+                "network-traffic--42cb8c07-38b9-50d0-9c47-eec148d72893",
+                "network-traffic--23be5dff-1a5f-597c-a791-ac25ee56f90d",
+                "network-traffic--76794fa5-ef98-5d0e-a1ee-c8adf1b83c0b",
+                "network-traffic--70546004-da0f-569b-b5e1-b01e8a0991d7",
+                "network-traffic--2093931e-63c3-56db-81fe-b45252982a09",
+                "network-traffic--356ac21e-b41f-5c74-978b-11388e2f6f8a",
+                "network-traffic--c7a883e6-b7b5-5385-8bfb-db9dbc6762e3",
+                "network-traffic--cc235d42-5997-51ff-b674-fc17a513576e",
+                "network-traffic--0f6075df-1aa3-5a6e-a7e7-9191ff237c22",
+                "network-traffic--3f3c7fd0-1b5b-5c32-8d22-6806794d6b2f",
+                "network-traffic--2976a7e3-9d91-5b05-acc1-b13adc4a8061",
+                "network-traffic--0bfd006c-76c7-5e89-b123-6c71802f8934",
+                "network-traffic--ca2fff8b-1589-55cc-a57a-5195cc95e9fc",
+                "network-traffic--81d1028a-3edb-532e-aa7d-b969912fe88e",
+                "network-traffic--8c66ea05-d842-51b5-9d99-711edc4635a4",
+                "network-traffic--74ec1cc3-553d-5974-915c-859bcd1b77b4",
+                "network-traffic--e47c60d4-8e54-5f66-b879-f7da91da57fb",
+                "network-traffic--f3c375ac-153e-5b04-9ce6-b2090b20b47d",
+                "network-traffic--5f00e206-38de-570d-a8ef-5ead02ed17af",
+                "network-traffic--5b00e601-6bd4-52aa-95ef-a1c6a6db7b58",
+                "network-traffic--d21c27ed-6f5d-5c2c-8040-b69c0ec8ee11",
+                "network-traffic--0797e790-bd5c-5d1a-aa03-f36a219508ac",
+                "network-traffic--2a5ea5c7-a4b2-5b71-b4e9-170a1473a146",
+                "network-traffic--5517843e-3012-544e-8cea-60942309b23a",
+                "network-traffic--ac01634d-b8bd-5cdc-bdd5-97f0571b47c0",
+                "network-traffic--03609cb7-0f1c-5802-b280-6e9d3b5b38b7",
+                "network-traffic--073a5501-e014-58ea-b210-eb8f79b49b1b",
+                "network-traffic--8a6ea20d-a77c-5c55-b32d-961a9ccafd70",
+                "network-traffic--0dc10a36-0d8a-5e61-aecd-4ad2f13fe434",
+                "network-traffic--cc2a3f9d-3f1d-5cd4-b2e9-0565345a7e55",
+                "network-traffic--6db7397b-f440-5f27-b24d-e104a7362a1f",
+                "network-traffic--e1480b24-6010-5a4e-bb0d-647ff907ec95",
+                "network-traffic--3dcb4484-e3e8-52b3-a1dc-049482cc0eda",
+                "network-traffic--3de4baca-ba5f-5804-8d0f-e4abb223ea18",
+                "network-traffic--36716953-2414-5ed8-8a71-dd5480884d73",
+                "network-traffic--56f90671-cf4d-5b7c-8949-de161624abf7",
+                "network-traffic--c4c41c91-1614-514b-ab0d-250639d77ea0",
+                "network-traffic--4cbdde33-1216-5fe3-9800-24aa9433c7b8",
+                "network-traffic--640bede0-a2b4-5fa9-ae28-a20ab4cb7dfe",
+                "network-traffic--fef8f128-a933-52b5-94b5-5b75ebe2855d",
+                "network-traffic--84e75196-9ef3-596b-a730-5da1ae344702",
+                "network-traffic--5aa0d19d-6749-5519-bf3d-13c281fe99b8",
+                "network-traffic--c75dbdb0-737e-5e98-8726-3adff5bdb88c",
+                "network-traffic--379739da-f112-53c7-970e-65697568d287",
+                "network-traffic--8f7dfbd5-b608-5dc7-b275-f40738c9bbd3",
+                "network-traffic--65387eb6-d637-5513-89f1-4a6968307235",
+                "network-traffic--b5bc1731-e0eb-5fff-b20a-36920b7f3676",
+                "network-traffic--bdb3c98a-3182-5411-82df-988d6725e868",
+                "network-traffic--78ee2306-d3e8-5c23-880f-7872b4a51bcc",
+                "network-traffic--ee62bd61-77ff-552b-b9af-3e0f5ebc4a23",
+                "network-traffic--2ed1e32a-f765-589c-bacc-10ee6bd1aa6d",
+                "network-traffic--06bcd0ab-730c-5ca5-adf4-79a50e5be4a3",
+                "network-traffic--9379ad44-65a3-5433-8571-674694492280",
+                "network-traffic--ade05843-a07e-54e1-95c5-3853878b8c52",
+                "network-traffic--eebbdf0e-a5cd-5c54-81dd-732cab761441",
+                "network-traffic--028275e2-5300-5177-b50f-7e0b67ea4a11",
+                "network-traffic--6eef263d-f202-5640-afe0-472d0413a093",
+                "network-traffic--b36519eb-eca4-5c34-9896-c41e86621edd",
+                "network-traffic--6c44527b-1b9c-5f67-952a-768d3d66a421",
+                "network-traffic--871a539f-a3e3-5d89-8b6e-22dff17310a1",
+                "network-traffic--af58e647-9810-576c-9d37-058a7e3ec889",
+                "network-traffic--6ea99dee-909d-582d-8b50-320278fe9c45",
+                "network-traffic--8fc08814-5ec5-5aa6-a77d-7ac784472832",
+                "network-traffic--ce65e24e-b05c-5a94-8173-3c3b9b949270",
+                "network-traffic--a1241a0d-5892-5dbd-89ce-90bdc7b84a08",
+                "network-traffic--822b3a58-7682-5274-8ff9-e69a7f33a92e",
+                "network-traffic--14472d3a-174b-55e8-b349-d141767045e8",
+                "network-traffic--17e355bc-5586-583b-abe0-05b0e5a79555",
+                "network-traffic--a1df96c7-f035-53cd-85d3-6c3c1acf55fa",
+                "network-traffic--f3480aaa-a3ae-518e-964e-f6d97af8866f",
+                "network-traffic--df6f63ac-e1d1-53dd-8bf7-eb93775a8b75",
+                "network-traffic--22832528-6fa0-55cb-807a-9830c7a85b19",
+                "network-traffic--277db0c4-31b9-5591-94f5-ad17b6e62682",
+                "network-traffic--b5e31d66-ad2a-5681-9cd0-2125b6a82f40",
+                "network-traffic--5aeb77c6-78d5-5445-a2e6-8c2dd13f7997",
+                "network-traffic--35f47dbb-e6d1-5d9f-95ff-b18a76d3c200",
+                "network-traffic--ca9a2191-3a86-5c19-8063-890ddcf66c75",
+                "network-traffic--1253287e-4be6-5989-b808-fffc4ddf4b75",
+                "network-traffic--b0b6a79f-28f8-5190-ac37-79ec83e196da",
+                "network-traffic--05b0e08f-9d7e-5927-9eae-752190498675",
+                "network-traffic--7d85ab21-2e43-5de9-a227-17e429e7ac99",
+                "network-traffic--e939fd7e-c7ee-5cf8-9fe2-d74642db5a86",
+                "network-traffic--9d6c8954-5bfd-5cdc-b7e2-3749b5d5d8e1",
+                "network-traffic--3192a97b-c251-5b6d-bd6e-dd8ed4b7e329",
+                "network-traffic--b658f7d8-3b7a-54aa-a601-bfb5058f1a90",
+                "network-traffic--49f238f2-79cc-5c34-b789-b2a624c284c8",
+                "network-traffic--b5e1d2a2-d274-5c29-a15a-fb560dc32f9e",
+                "network-traffic--6f0a17b7-a12e-508b-a454-8e30cd0f6b14",
+                "network-traffic--40bfeaf0-bb27-57f7-bda1-56fda27ab0a7",
+                "network-traffic--236dfb3f-413f-5c88-87d9-22f8eec87aac",
+                "network-traffic--433e9767-a9f6-5a83-b954-433568fd6050",
+                "network-traffic--2b75ce22-3a25-5db4-9c1c-6cb84e0990fa",
+                "network-traffic--d3b9916a-be0b-5fae-b734-ee402f3840e1",
+                "network-traffic--309d7ffb-2055-5e02-9ef5-4d4eeca8b74e",
+                "network-traffic--137effae-7a92-5899-82ff-aebc015bb79d",
+                "ipv4-addr--48a7c3d8-855f-547b-ad6e-a717a7ca79f1",
+                "infrastructure--023b2695-8711-44f1-94cd-015161de8640",
+                "relationship--a586c431-db6f-4789-9cc4-416aaab28b19",
+                "relationship--32666b3d-8f29-4225-aa47-e842787620b6",
+                "relationship--46e821aa-1d29-4db1-80a3-2d6eae11fece",
+                "observed-data--1657e036-9b55-4ee9-b509-9d2eeca846d4",
+                "observed-data--ce5fc4ac-ca08-4e5d-b355-4712271ff2cf",
+                "indicator--2fd45d43-0955-459b-9558-5ab02ce75a5e",
+                "indicator--bfe86cda-21dd-4508-a8eb-03c67ea2494f",
+                "relationship--d383364f-e889-4a60-8cdd-0eeac74f209c",
+                "relationship--1a47ef7e-f499-443b-b71e-85780200cf12",
+                "attack-pattern--67222f5b-55c0-45b4-957e-0fb664238159",
+                "tool--14a2abcd-85dd-4b30-aa1c-9e09808588f7",
+                "relationship--c773f287-828b-43ca-a849-2fa78a9ee12f",
+                "relationship--1a9243f8-ff83-41d0-b60f-a69998a9bad3",
+                "relationship--8a5781de-74c6-4e51-84a6-b26d895b88c1"
+            ]
+        }
+    ]
+}

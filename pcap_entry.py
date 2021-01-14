@@ -84,7 +84,7 @@ class PcapEntry:
                 dst_port=self.tcp_dst_port,
                 protocols=['ipv4', 'tcp', 'enip']
             )
-        elif self.protocol[-3:] == 'arp':
+        elif self.protocol[-3:] == 'arp' or self.protocol[-3:] == 'tcp':
             source = None
             destination = None
             for object in instantiated_stix21_objects:
@@ -102,7 +102,7 @@ class PcapEntry:
                 start=self.timestamp.isoformat(),
                 src_ref=source.id,
                 dst_ref=destination.id,
-                protocols=['eth', 'arp']
+                protocols=['eth', self.protocol[-3:]]
             )
         return traffic
 

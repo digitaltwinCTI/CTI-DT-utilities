@@ -45,13 +45,39 @@ def build_sco_list(sco_list, sco_type=None):
 
 
 def get_static_mitm_sco_list():
-    """Returns a list of relevant SCOs for the MITM attack simulation use case"""
-    print('You have selected the following SCOs:')
+    """Returns a list of relevant SCOs for the MITM and DoS attack simulation use case"""
+    print('\nYou have selected the following SCOs:')
     static_mitm_sco_list = [['ipv4-addr', 'IPv4 Address Object', 'network'], ['mac-addr', 'MAC Address Object', 'network'],
                        ['network-traffic', 'Network Traffic Object', 'network'], ['process', 'Process Object', 'host']]
     for sco in static_mitm_sco_list:
         print(sco)
+    print('')
     return static_mitm_sco_list
+
+
+def get_static_stix21_objects_dos_round_1():
+    """Returns a list of relevant for the DoS attack simulation use case"""
+    static_scosdo_list = [['infrastructure'],  ['observed-data'], ['report']]
+    static_rel_list = [['infrastructure', 'consists-of', 'ipv4-addr', 'direct'],
+                      ['ipv4-addr', 'resolves_to_refs', 'mac-addr', 'embedded'],
+                      ['observed-data', 'object_refs', 'ipv4-addr', 'embedded'],
+                      ['report', 'object_refs', 'ipv4-addr', 'embedded'],
+                      ['network-traffic', 'src_ref', 'mac-addr', 'embedded'],
+                      ['network-traffic', 'dst_ref', 'mac-addr', 'embedded'],
+                      ['report', 'object_refs', 'mac-addr', 'embedded'],
+                      ['observed-data', 'object_refs', 'network-traffic', 'embedded'],
+                      ['report', 'object_refs', 'network-traffic', 'embedded'],
+                      ['infrastructure', 'consists-of', 'process', 'direct'],
+                      ['report', 'object_refs', 'process', 'embedded']]
+
+    print('You have selected the following additional SCO and SDOs:')
+    for element in static_scosdo_list:
+        print(element)
+
+    print('\nYou have selected the following SROs / relationships:')
+    for rel in static_rel_list:
+        print(rel)
+    return static_scosdo_list, static_rel_list
 
 
 def build_sdosro_list(rel_list, scosdo_list, rel_type='any'):

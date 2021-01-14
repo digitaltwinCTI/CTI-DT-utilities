@@ -59,7 +59,7 @@ def get_all_severity_level(log_entry_list):
     severity_list = list()
     for entry in log_entry_list:
         severity_list.append(entry.loglevel)
-    print('Severity log levels identified within all log entries:')
+    print('Severity log levels identified within log entries:')
     return sorted(set(severity_list))
 
 
@@ -68,7 +68,7 @@ def get_all_protocols(pcap_frame_list):
     protocol_list = list()
     for entry in pcap_frame_list:
         protocol_list.append(entry.protocol)
-    print('Protocols identified within all pcap entries:')
+    print('Protocols identified within pcap entries:')
     return sorted(set(protocol_list))
 
 
@@ -77,7 +77,7 @@ def get_timespan(entry_list):
     first_last_timestamp_list = list()
     first_last_timestamp_list.append(entry_list[0].timestamp)
     first_last_timestamp_list.append(entry_list[len(entry_list) - 1].timestamp)
-    print('First and last timestamp identified within all entries:')
+    print('First and last timestamp identified within entries:')
     return first_last_timestamp_list
 
 
@@ -88,7 +88,7 @@ def get_all_ip_addr(log_entry_list):
         ip_addr_list.append(entry.ip_addr_host)
         if entry.ip_addr_external is not None:
             ip_addr_list.append(entry.ip_addr_external)
-    print('IP addresses of network topology identified within all log entries:')
+    print('IP addresses of network topology identified within log entries:')
     return sorted(set(ip_addr_list))
 
 
