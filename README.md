@@ -22,4 +22,6 @@ Using main.py allows to generate JSON reports for the MITM and DoS use case. The
 
 ![STIX2.1 DoS CTI Report Visualization](./images/STIX21_report_DoS_use_case_visualization.png "STIX2.1 DoS CTI Report Visualization")
 
-## Referencing
+## Research and Citation
+
+Please consider citing this GitHub repository if you are using our Digital Twin CTI generation utilities.
