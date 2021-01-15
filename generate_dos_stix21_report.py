@@ -1,6 +1,7 @@
 """
 This is module is intended to generate a STIX2.1 report for the digital twin based DoS attack simulation
 """
+
 import sys
 
 from stix2 import (ObjectPath, EqualityComparisonExpression, ObservationExpression, StringConstant,

@@ -1,6 +1,5 @@
 from stix2.v21 import *
 import uuid
-import json
 
 
 class PcapEntry:

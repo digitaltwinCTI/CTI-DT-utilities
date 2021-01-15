@@ -25,8 +25,7 @@ class LogEntry:
             )
         elif ip_type == 'external':
             ipv4_addr = IPv4Address(
-                # id is optional
-                id="ipv4-addr--" + str(uuid.uuid4()),
+                id="ipv4-addr--" + str(uuid.uuid4()), # id is automatically assigned if unspecified
                 value=self.ip_addr_external
             )
         else:
@@ -34,7 +33,7 @@ class LogEntry:
             return
         return ipv4_addr
 
-    def generate_process(self, connection_refs=None):
+    def generate_process(self):
         process = Process(
             command_line=self.program
         )

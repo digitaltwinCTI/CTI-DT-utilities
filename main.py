@@ -1,6 +1,7 @@
 """
 This is the main program for CTI generation based on digital twin simulation output
 """
+
 import sys
 
 from stix2 import (ObjectPath, EqualityComparisonExpression, ObservationExpression, StringConstant,
