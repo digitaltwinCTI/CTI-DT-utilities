@@ -1,5 +1,5 @@
 """
-This is module is intended to generate a STIX2.1 report for the digital twin based DOS attack simulation
+This is module is intended to generate a STIX2.1 report for the digital twin based DoS attack simulation
 """
 import sys
 
@@ -20,25 +20,24 @@ def pretty_print_list(list):
         print(element)
 
 
-if __name__ == '__main__':
+def generate_dos_stix21_report():
     root_dir = os.path.dirname(os.path.abspath(__file__))
     import_path = os.path.join(root_dir, 'data\\')
     export_path = os.path.join(root_dir, 'results\\')
-    #sys.stdout = open(export_path+'console_output_DoS_use_case', 'w')
+    # sys.stdout = open(export_path+'console_output_DoS_use_case', 'w')
 
     stix21_object_list_DOS = list()
 
     print('\nUSE CASE 2 -- DoS Attack:\n')
 
     imported_stix21_data = import_static_stix21_data()
-    imported_sco_list = imported_stix21_data[0]
     imported_sro_list = imported_stix21_data[1]
 
-    print('\n-------------------------------------------\n')
+    print('\n-------------------------------------------')
 
-    static_sco_list_DOS = get_static_mitm_sco_list()
+    get_static_mitm_sco_list()
 
-    print('\n-------------------------------------------\n')
+    print('-------------------------------------------\n')
 
     converted_logs_DOS1 = convert_log_entries(import_simulation_output(
         import_path, "use_case_2_plc.log"))
@@ -291,7 +290,7 @@ if __name__ == '__main__':
 
     mem = MemoryStore()
     mem.add(bundle_DOS)
-    #mem.save_to_file(export_path+'STIX21_output_DoS_use_case.json')
+    # mem.save_to_file(export_path+'STIX21_output_DoS_use_case.json')
 
     print('-------------------------------------------')
 

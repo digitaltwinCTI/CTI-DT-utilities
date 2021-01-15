@@ -1,0 +1,933 @@
+
+USE CASE 1 -- MITM Attack:
+
+STIX2.1 SCOs imported
+STIX2.1 relationships (embedded and direct) imported
+
+-------------------------------------------
+
+
+You have selected the following SCOs:
+['ipv4-addr', 'IPv4 Address Object', 'network']
+['mac-addr', 'MAC Address Object', 'network']
+['network-traffic', 'Network Traffic Object', 'network']
+['process', 'Process Object', 'host']
+
+
+-------------------------------------------
+
+Simulation output imported (type:log file)
+Simulation output imported (type:pcap file)
+Log entries converted
+Pcap frames converted
+
+IP addresses of network topology identified within log entries:
+['10.0.0.1', '10.0.0.2', '10.0.0.3']
+
+First and last timestamp identified within entries:
+The provided list contains the following elements:
+2020-08-17 13:49:13
+2020-08-17 13:52:27
+
+Severity log levels identified within log entries:
+['INFO', 'WARNING']
+
+Log entries filtered based on 10.0.0.1 and host only True
+Log entries filtered based on WARNING
+Entries filtered based on 2020-08-17 13:51:00 timestamp with 0:00:08 deviation
+
+The provided list contains the following elements:
+WARNING 2020-08-17 13:50:53 10.0.0.1 main_loop Liquid level (SENSOR 3) is not received from 10.0.0.3. Program is unable to proceed properly
+WARNING 2020-08-17 13:51:00 10.0.0.1 main_loop Liquid level (SENSOR 3) is not received from 10.0.0.3. Program is unable to proceed properly
+WARNING 2020-08-17 13:51:07 10.0.0.1 main_loop Liquid level (SENSOR 3) is not received from 10.0.0.3. Program is unable to proceed properly
+
+Log entries filtered based on 10.0.0.2 and host only False
+
+-------------------------------------------
+
+Generated STIX2.1 SCOs from log entries:
+{
+    "type": "ipv4-addr",
+    "id": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+    "value": "10.0.0.1",
+    "spec_version": "2.1"
+} {
+    "type": "ipv4-addr",
+    "id": "ipv4-addr--1e230cd9-4281-4e31-8ddf-2b4e74d840ee",
+    "value": "10.0.0.2",
+    "spec_version": "2.1"
+} {
+    "type": "ipv4-addr",
+    "id": "ipv4-addr--7bca20f7-804b-4a48-a597-8ff800e399cf",
+    "value": "10.0.0.3",
+    "spec_version": "2.1"
+} {
+    "type": "process",
+    "id": "process--7d435935-aca1-4374-b9fa-cd93bd1d46a4",
+    "command_line": "main_loop",
+    "spec_version": "2.1"
+}
+
+-------------------------------------------
+
+First and last timestamp identified within entries:
+The provided list contains the following elements:
+2020-08-10 15:52:09.631014
+2020-08-10 15:52:19.873168
+
+Protocols identified within pcap entries:
+The provided list contains the following elements:
+eth:ethertype:arp
+eth:ethertype:ip:icmp
+eth:ethertype:ip:tcp
+eth:ethertype:ip:tcp:enip
+eth:ethertype:ip:tcp:enip:cip:cipcm:cipcls
+eth:ethertype:ip:tcp:ssh
+eth:ethertype:ip:udp:ssdp
+eth:ethertype:ipv6:icmpv6
+
+-------------------------------------------
+
+Pcap frames filtered based on eth:ethertype:ip:tcp:enip
+
+The provided list contains the following elements:
+2020-08-10 15:52:11.473747 eth:ethertype:ip:tcp:enip 00:00:00:00:00:01 00:00:00:00:00:02 10.0.0.1 10.0.0.2 37546 44818 0 
+2020-08-10 15:52:11.477332 eth:ethertype:ip:tcp:enip 00:00:00:00:00:02 00:00:00:00:00:01 10.0.0.2 10.0.0.1 44818 37546 0 
+2020-08-10 15:52:12.464967 eth:ethertype:ip:tcp:enip 00:00:00:00:00:01 00:00:00:00:00:03 10.0.0.1 10.0.0.3 59176 44818 0 
+2020-08-10 15:52:12.467870 eth:ethertype:ip:tcp:enip 00:00:00:00:00:03 00:00:00:00:00:01 10.0.0.3 10.0.0.1 44818 59176 0 
+2020-08-10 15:52:14.809023 eth:ethertype:ip:tcp:enip 00:00:00:00:00:01 00:00:00:00:00:02 10.0.0.1 10.0.0.2 37570 44818 0 
+2020-08-10 15:52:14.811998 eth:ethertype:ip:tcp:enip 00:00:00:00:00:02 00:00:00:00:00:01 10.0.0.2 10.0.0.1 44818 37570 0 
+2020-08-10 15:52:15.760700 eth:ethertype:ip:tcp:enip 00:00:00:00:00:05 00:00:00:00:00:03 10.0.0.1 10.0.0.3 59200 44818 0 
+
+-------------------------------------------
+
+Generated STIX2.1 network traffic SCOs from enip filtered pcap frames:
+The provided list contains the following elements:
+{
+    "type": "network-traffic",
+    "id": "network-traffic--830334a4-dd8f-5b86-8115-4f6ef5247661",
+    "start": "2020-08-10T15:52:11.473747Z",
+    "src_ref": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+    "dst_ref": "ipv4-addr--1e230cd9-4281-4e31-8ddf-2b4e74d840ee",
+    "src_port": 37546,
+    "dst_port": 44818,
+    "protocols": [
+        "ipv4",
+        "tcp",
+        "enip"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--ea28deb7-b1e2-5ca0-9a3f-085a0a2fc995",
+    "start": "2020-08-10T15:52:11.477332Z",
+    "src_ref": "ipv4-addr--1e230cd9-4281-4e31-8ddf-2b4e74d840ee",
+    "dst_ref": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+    "src_port": 44818,
+    "dst_port": 37546,
+    "protocols": [
+        "ipv4",
+        "tcp",
+        "enip"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--e0f6e4cb-54f5-5ff1-83d3-0a5d58cd817a",
+    "start": "2020-08-10T15:52:12.464967Z",
+    "src_ref": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+    "dst_ref": "ipv4-addr--7bca20f7-804b-4a48-a597-8ff800e399cf",
+    "src_port": 59176,
+    "dst_port": 44818,
+    "protocols": [
+        "ipv4",
+        "tcp",
+        "enip"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--30c21feb-1b33-556a-98ee-db85bb4527d0",
+    "start": "2020-08-10T15:52:12.46787Z",
+    "src_ref": "ipv4-addr--7bca20f7-804b-4a48-a597-8ff800e399cf",
+    "dst_ref": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+    "src_port": 44818,
+    "dst_port": 59176,
+    "protocols": [
+        "ipv4",
+        "tcp",
+        "enip"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--c63234c2-a85b-59d0-a349-77a04d9e9a8e",
+    "start": "2020-08-10T15:52:14.809023Z",
+    "src_ref": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+    "dst_ref": "ipv4-addr--1e230cd9-4281-4e31-8ddf-2b4e74d840ee",
+    "src_port": 37570,
+    "dst_port": 44818,
+    "protocols": [
+        "ipv4",
+        "tcp",
+        "enip"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--c077250a-a3be-5895-ba16-88bab838730d",
+    "start": "2020-08-10T15:52:14.811998Z",
+    "src_ref": "ipv4-addr--1e230cd9-4281-4e31-8ddf-2b4e74d840ee",
+    "dst_ref": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+    "src_port": 44818,
+    "dst_port": 37570,
+    "protocols": [
+        "ipv4",
+        "tcp",
+        "enip"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--82ba1463-5102-5320-99c7-c5a74a2ec8f2",
+    "start": "2020-08-10T15:52:15.7607Z",
+    "src_ref": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+    "dst_ref": "ipv4-addr--7bca20f7-804b-4a48-a597-8ff800e399cf",
+    "src_port": 59200,
+    "dst_port": 44818,
+    "protocols": [
+        "ipv4",
+        "tcp",
+        "enip"
+    ],
+    "spec_version": "2.1"
+}
+
+-------------------------------------------
+
+Generated STIX2.1 MAC addresses from enip filtered pcap frames:
+{
+    "type": "mac-addr",
+    "id": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+    "value": "00:00:00:00:00:01",
+    "spec_version": "2.1"
+} {
+    "type": "mac-addr",
+    "id": "mac-addr--d9afe622-4c97-507c-bab7-78e8e93ef2bc",
+    "value": "00:00:00:00:00:02",
+    "spec_version": "2.1"
+} {
+    "type": "mac-addr",
+    "id": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+    "value": "00:00:00:00:00:03",
+    "spec_version": "2.1"
+}
+
+-------------------------------------------
+
+Pcap frames filtered based on eth:ethertype:arp
+
+The provided list contains the following elements:
+2020-08-10 15:52:14.302755 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:01 10.0.0.3 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.3 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:03 (frame 33042) 0
+2020-08-10 15:52:14.302864 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:03 10.0.0.1 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.1 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:01 (frame 41220) 0
+2020-08-10 15:52:14.341779 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:01 10.0.0.3 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.3 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:03 (frame 41221) 0
+2020-08-10 15:52:14.378396 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:03 10.0.0.1 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.1 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:01 (frame 41304) 0
+2020-08-10 15:52:15.313837 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:03 10.0.0.1 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.1 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:01 (frame 41304) 0
+2020-08-10 15:52:15.313651 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:01 10.0.0.3 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.3 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:03 (frame 41536) 0
+2020-08-10 15:52:15.313808 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:03 10.0.0.1 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.1 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:01 (frame 41537) 0
+2020-08-10 15:52:15.313749 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:01 10.0.0.3 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.3 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:03 (frame 41538) 0
+2020-08-10 15:52:16.324784 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:03 10.0.0.1 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.1 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:01 (frame 41539) 0
+2020-08-10 15:52:16.324763 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:01 10.0.0.3 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.3 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:03 (frame 41761) 0
+2020-08-10 15:52:16.324782 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:03 10.0.0.1 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.1 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:01 (frame 41762) 0
+2020-08-10 15:52:16.324770 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:01 10.0.0.3 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.3 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:03 (frame 41763) 0
+2020-08-10 15:52:17.334994 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:03 10.0.0.1 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.1 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:01 (frame 41764) 0
+2020-08-10 15:52:17.334953 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:01 10.0.0.3 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.3 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:03 (frame 41981) 0
+2020-08-10 15:52:17.334992 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:03 10.0.0.1 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.1 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:01 (frame 41982) 0
+2020-08-10 15:52:17.334977 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:01 10.0.0.3 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.3 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:03 (frame 41983) 0
+2020-08-10 15:52:18.346240 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:03 10.0.0.1 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.1 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:01 (frame 41984) 0
+2020-08-10 15:52:18.346214 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:01 10.0.0.3 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.3 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:03 (frame 42178) 0
+2020-08-10 15:52:18.346238 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:03 10.0.0.1 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.1 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:01 (frame 42181) 0
+2020-08-10 15:52:18.346224 eth:ethertype:arp 00:00:00:00:00:05 00:00:00:00:00:01 10.0.0.3 00:00:00:00:00:05 Duplicate IP address detected for 10.0.0.3 (00:00:00:00:00:05) - also in use by 00:00:00:00:00:03 (frame 42182) 0
+
+-------------------------------------------
+
+Generated STIX2.1 MAC address from arp filtered pcap frames:
+{
+    "type": "mac-addr",
+    "id": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "value": "00:00:00:00:00:05",
+    "spec_version": "2.1"
+}
+
+-------------------------------------------
+
+Generated STIX2.1 network traffic from arp filtered pcap frames:
+The provided list contains the following elements:
+{
+    "type": "network-traffic",
+    "id": "network-traffic--1c0d338f-d60b-5055-852f-73d7dcc9bf06",
+    "start": "2020-08-10T15:52:14.302755Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--f00e5dd9-eb93-53dc-ad91-d6cfaa3ca932",
+    "start": "2020-08-10T15:52:14.302864Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--5e00ae8a-e93c-5f8b-8010-6e1322e595c2",
+    "start": "2020-08-10T15:52:14.341779Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--22bb3bea-1a08-5c1f-ba13-2263bf8198a5",
+    "start": "2020-08-10T15:52:14.378396Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--3fc1a28f-f768-5fb3-8867-bda886b5e96c",
+    "start": "2020-08-10T15:52:15.313837Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--0ada4aaf-2018-5324-8b53-0c8520d1016a",
+    "start": "2020-08-10T15:52:15.313651Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--4f7c1e41-090e-5d9a-b79d-2b6bf7503e84",
+    "start": "2020-08-10T15:52:15.313808Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--90121488-4a86-5235-a391-b5efbd1f2bf1",
+    "start": "2020-08-10T15:52:15.313749Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--3675d9bb-ea47-53e0-87e8-55a8bed6e9bc",
+    "start": "2020-08-10T15:52:16.324784Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--02053806-2990-5cd1-8aa6-7276f468fa03",
+    "start": "2020-08-10T15:52:16.324763Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--001c885f-fc33-5674-add3-b0a7de713889",
+    "start": "2020-08-10T15:52:16.324782Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--3ed83c4d-d7b3-5806-95a7-20a883a29107",
+    "start": "2020-08-10T15:52:16.32477Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--9dc8e463-3532-50bf-a2a3-da3cb2d4258a",
+    "start": "2020-08-10T15:52:17.334994Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--1780774b-9b45-5480-be83-50f938fb8fb2",
+    "start": "2020-08-10T15:52:17.334953Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--df2921d0-128f-57f9-b045-fe0da802673a",
+    "start": "2020-08-10T15:52:17.334992Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--4fd85fe0-5076-515e-b1ac-31df3e420fe8",
+    "start": "2020-08-10T15:52:17.334977Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--1400b22e-b9ff-5d01-9404-0f114f60c171",
+    "start": "2020-08-10T15:52:18.34624Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--9d8f3536-e2b9-526c-b2a4-607d50ae1264",
+    "start": "2020-08-10T15:52:18.346214Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--35aa7e94-ee48-520a-97d4-28c23bdd1d2e",
+    "start": "2020-08-10T15:52:18.346238Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+{
+    "type": "network-traffic",
+    "id": "network-traffic--59bf0be2-0a21-58b3-8e51-88c7ed7787c4",
+    "start": "2020-08-10T15:52:18.346224Z",
+    "src_ref": "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+    "dst_ref": "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+    "protocols": [
+        "eth",
+        "arp"
+    ],
+    "spec_version": "2.1"
+}
+
+-------------------------------------------
+
+Searching the relationship list for a STIX2.1 object with specified relationship type:
+['attack-pattern', 'uses', 'tool', 'direct']
+['campaign', 'uses', 'tool', 'direct']
+['course-of-action', 'mitigates', 'tool', 'direct']
+['indicator', 'indicates', 'tool', 'direct']
+['infrastructure', 'hosts', 'tool', 'direct']
+['intrusion-set', 'uses', 'tool', 'direct']
+['malware', 'downloads', 'tool', 'direct']
+['malware', 'drops', 'tool', 'direct']
+['malware', 'uses', 'tool', 'direct']
+['threat-actor', 'uses', 'tool', 'direct']
+['tool', 'delivers', 'malware', 'direct']
+['tool', 'drops', 'malware', 'direct']
+['tool', 'has', 'vulnerability', 'direct']
+['tool', 'targets', 'identity', 'direct']
+['tool', 'targets', 'infrastructure', 'direct']
+['tool', 'targets', 'location', 'direct']
+['tool', 'targets', 'vulnerability', 'direct']
+['tool', 'derived-from', 'tool', 'direct']
+['tool', 'duplicate-of', 'tool', 'direct']
+['tool', 'related-to', 'tool', 'direct']
+
+
+
+-------------------------------------------
+
+Updated IPv4 address objects and Process object:
+{
+    "type": "ipv4-addr",
+    "id": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+    "value": "10.0.0.1",
+    "resolves_to_refs": [
+        "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+        "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3"
+    ],
+    "spec_version": "2.1"
+} {
+    "type": "ipv4-addr",
+    "id": "ipv4-addr--48a7c3d8-855f-547b-ad6e-a717a7ca79f1",
+    "value": "10.0.0.2",
+    "resolves_to_refs": [
+        "mac-addr--d9afe622-4c97-507c-bab7-78e8e93ef2bc",
+        "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3"
+    ],
+    "spec_version": "2.1"
+} {
+    "type": "ipv4-addr",
+    "id": "ipv4-addr--7bca20f7-804b-4a48-a597-8ff800e399cf",
+    "value": "10.0.0.3",
+    "resolves_to_refs": [
+        "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+        "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3"
+    ],
+    "spec_version": "2.1"
+} {
+    "type": "process",
+    "id": "process--7d435935-aca1-4374-b9fa-cd93bd1d46a4",
+    "command_line": "main_loop",
+    "opened_connection_refs": [
+        "network-traffic--830334a4-dd8f-5b86-8115-4f6ef5247661",
+        "network-traffic--ea28deb7-b1e2-5ca0-9a3f-085a0a2fc995",
+        "network-traffic--e0f6e4cb-54f5-5ff1-83d3-0a5d58cd817a",
+        "network-traffic--30c21feb-1b33-556a-98ee-db85bb4527d0",
+        "network-traffic--c63234c2-a85b-59d0-a349-77a04d9e9a8e",
+        "network-traffic--c077250a-a3be-5895-ba16-88bab838730d"
+    ],
+    "spec_version": "2.1"
+}
+
+-------------------------------------------
+
+Custom selected and generated STIX2.1 SDOs and SROs:
+{
+    "type": "infrastructure",
+    "spec_version": "2.1",
+    "id": "infrastructure--ad440d56-87c2-4508-8614-c1fdadb7b3e7",
+    "created": "2021-01-15T08:36:57.391322Z",
+    "modified": "2021-01-15T08:36:57.391322Z",
+    "name": "Filling plant digital twin",
+    "description": "Digital twin representing a filling plant with three PLCs. Target of the conducted attack"
+} {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--3af68377-a8fe-4470-9e18-1344eee31d78",
+    "created": "2021-01-15T08:36:57.391322Z",
+    "modified": "2021-01-15T08:36:57.391322Z",
+    "relationship_type": "consists_of",
+    "source_ref": "infrastructure--ad440d56-87c2-4508-8614-c1fdadb7b3e7",
+    "target_ref": "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6"
+} {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--25114925-8814-4c30-9865-a108d29a3105",
+    "created": "2021-01-15T08:36:57.392321Z",
+    "modified": "2021-01-15T08:36:57.392321Z",
+    "relationship_type": "consists_of",
+    "source_ref": "infrastructure--ad440d56-87c2-4508-8614-c1fdadb7b3e7",
+    "target_ref": "ipv4-addr--1e230cd9-4281-4e31-8ddf-2b4e74d840ee"
+} {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--aff7a99d-d316-42c3-bbe4-bbfb379b36d1",
+    "created": "2021-01-15T08:36:57.392321Z",
+    "modified": "2021-01-15T08:36:57.392321Z",
+    "relationship_type": "consists_of",
+    "source_ref": "infrastructure--ad440d56-87c2-4508-8614-c1fdadb7b3e7",
+    "target_ref": "ipv4-addr--7bca20f7-804b-4a48-a597-8ff800e399cf"
+} {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--26ca6561-a52b-4b50-b62b-0e579289447c",
+    "created": "2021-01-15T08:36:57.392321Z",
+    "modified": "2021-01-15T08:36:57.392321Z",
+    "relationship_type": "consists_of",
+    "source_ref": "infrastructure--ad440d56-87c2-4508-8614-c1fdadb7b3e7",
+    "target_ref": "process--7d435935-aca1-4374-b9fa-cd93bd1d46a4"
+}
+
+Custom generated Observed Data for IP addresses, regular traffic, ARP traffic and spoofed traffic:
+{
+    "type": "observed-data",
+    "spec_version": "2.1",
+    "id": "observed-data--bf3b0d8a-ed35-4895-b9ec-974089c321ba",
+    "created": "2021-01-15T08:36:57.394315Z",
+    "modified": "2021-01-15T08:36:57.394315Z",
+    "first_observed": "2020-08-10T15:52:09.631014Z",
+    "last_observed": "2020-08-10T15:52:19.873168Z",
+    "number_observed": 1,
+    "object_refs": [
+        "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+        "ipv4-addr--48a7c3d8-855f-547b-ad6e-a717a7ca79f1",
+        "ipv4-addr--7bca20f7-804b-4a48-a597-8ff800e399cf"
+    ]
+} {
+    "type": "observed-data",
+    "spec_version": "2.1",
+    "id": "observed-data--f20e5cb8-f835-422f-8093-4376fde2ae6e",
+    "created": "2021-01-15T08:36:57.394315Z",
+    "modified": "2021-01-15T08:36:57.394315Z",
+    "first_observed": "2020-08-10T15:52:14.302755Z",
+    "last_observed": "2020-08-10T15:52:18.346224Z",
+    "number_observed": 20,
+    "object_refs": [
+        "network-traffic--1c0d338f-d60b-5055-852f-73d7dcc9bf06",
+        "network-traffic--f00e5dd9-eb93-53dc-ad91-d6cfaa3ca932",
+        "network-traffic--5e00ae8a-e93c-5f8b-8010-6e1322e595c2",
+        "network-traffic--22bb3bea-1a08-5c1f-ba13-2263bf8198a5",
+        "network-traffic--3fc1a28f-f768-5fb3-8867-bda886b5e96c",
+        "network-traffic--0ada4aaf-2018-5324-8b53-0c8520d1016a",
+        "network-traffic--4f7c1e41-090e-5d9a-b79d-2b6bf7503e84",
+        "network-traffic--90121488-4a86-5235-a391-b5efbd1f2bf1",
+        "network-traffic--3675d9bb-ea47-53e0-87e8-55a8bed6e9bc",
+        "network-traffic--02053806-2990-5cd1-8aa6-7276f468fa03",
+        "network-traffic--001c885f-fc33-5674-add3-b0a7de713889",
+        "network-traffic--3ed83c4d-d7b3-5806-95a7-20a883a29107",
+        "network-traffic--9dc8e463-3532-50bf-a2a3-da3cb2d4258a",
+        "network-traffic--1780774b-9b45-5480-be83-50f938fb8fb2",
+        "network-traffic--df2921d0-128f-57f9-b045-fe0da802673a",
+        "network-traffic--4fd85fe0-5076-515e-b1ac-31df3e420fe8",
+        "network-traffic--1400b22e-b9ff-5d01-9404-0f114f60c171",
+        "network-traffic--9d8f3536-e2b9-526c-b2a4-607d50ae1264",
+        "network-traffic--35aa7e94-ee48-520a-97d4-28c23bdd1d2e",
+        "network-traffic--59bf0be2-0a21-58b3-8e51-88c7ed7787c4"
+    ]
+} {
+    "type": "observed-data",
+    "spec_version": "2.1",
+    "id": "observed-data--db39a10e-0a53-4da9-9dfd-76c99804580e",
+    "created": "2021-01-15T08:36:57.395312Z",
+    "modified": "2021-01-15T08:36:57.395312Z",
+    "first_observed": "2020-08-10T15:52:11.473747Z",
+    "last_observed": "2020-08-10T15:52:14.811998Z",
+    "number_observed": 6,
+    "object_refs": [
+        "network-traffic--830334a4-dd8f-5b86-8115-4f6ef5247661",
+        "network-traffic--ea28deb7-b1e2-5ca0-9a3f-085a0a2fc995",
+        "network-traffic--e0f6e4cb-54f5-5ff1-83d3-0a5d58cd817a",
+        "network-traffic--30c21feb-1b33-556a-98ee-db85bb4527d0",
+        "network-traffic--c63234c2-a85b-59d0-a349-77a04d9e9a8e",
+        "network-traffic--c077250a-a3be-5895-ba16-88bab838730d"
+    ]
+} {
+    "type": "observed-data",
+    "spec_version": "2.1",
+    "id": "observed-data--a0c2f5d0-8055-4320-86f0-7b83b8c29d2f",
+    "created": "2021-01-15T08:36:57.395312Z",
+    "modified": "2021-01-15T08:36:57.395312Z",
+    "first_observed": "2020-08-10T15:52:15.7607Z",
+    "last_observed": "2020-08-10T15:52:15.7607Z",
+    "number_observed": 1,
+    "object_refs": [
+        "network-traffic--82ba1463-5102-5320-99c7-c5a74a2ec8f2"
+    ]
+}
+
+Custom generated Indicators based on duplicate IP to MAC resolving, ARP traffic and spoofed traffic:
+{
+    "type": "indicator",
+    "spec_version": "2.1",
+    "id": "indicator--ce032069-ce77-4aa7-86c0-8409ad1c4764",
+    "created": "2021-01-15T08:36:57.397306Z",
+    "modified": "2021-01-15T08:36:57.397306Z",
+    "name": "ARP spoofing indicator - duplicate IP address",
+    "description": "IP address resolves to two different MAC addresses",
+    "pattern": "[ipv4-addr:resolves_to_refs[0] NOT = '00:00:00:00:00:05' AND ipv4-addr:resolves_to_refs[1] = '00:00:00:00:00:05']",
+    "pattern_type": "stix",
+    "pattern_version": "2.1",
+    "valid_from": "2021-01-15T09:36:57.397306Z"
+}
+{
+    "type": "indicator",
+    "spec_version": "2.1",
+    "id": "indicator--7a8427d7-f7bd-4dd5-9f24-85ed788b38b6",
+    "created": "2021-01-15T08:36:57.416256Z",
+    "modified": "2021-01-15T08:36:57.416256Z",
+    "name": "ARP spoofing indicator - repeated arp traffic",
+    "description": "ARP spoofing network traffic originating from malicious MAC address",
+    "pattern": "[network-traffic:scr_ref = '00:00:00:00:00:05' AND network-traffic:protocols[1] = 'arp'] REPEATS 10 TIMES WITHIN 5 SECONDS",
+    "pattern_type": "stix",
+    "pattern_version": "2.1",
+    "valid_from": "2021-01-15T09:36:57.416256Z"
+}
+{
+    "type": "indicator",
+    "spec_version": "2.1",
+    "id": "indicator--284250cf-2be5-45b0-834e-a57740d17681",
+    "created": "2021-01-15T08:36:57.428222Z",
+    "modified": "2021-01-15T08:36:57.428222Z",
+    "name": "ARP spoofing indicator - spoofed enip traffic",
+    "description": "Enip traffic originating from malicious MAC address",
+    "pattern": "[network-traffic:scr_ref = '00:00:00:00:00:05' AND network-traffic:protocols[2] = 'enip']",
+    "pattern_type": "stix",
+    "pattern_version": "2.1",
+    "valid_from": "2021-01-15T09:36:57.428222Z"
+}
+
+Custom generated relationships between Observed Data and Indicators:
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--895b2eda-c244-4d1f-a78b-fafa5bec2968",
+    "created": "2021-01-15T08:36:57.43321Z",
+    "modified": "2021-01-15T08:36:57.43321Z",
+    "relationship_type": "based-on",
+    "source_ref": "indicator--ce032069-ce77-4aa7-86c0-8409ad1c4764",
+    "target_ref": "observed-data--bf3b0d8a-ed35-4895-b9ec-974089c321ba"
+} {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--24d1e171-dd4c-408e-8c7f-dd19babafa0e",
+    "created": "2021-01-15T08:36:57.434208Z",
+    "modified": "2021-01-15T08:36:57.434208Z",
+    "relationship_type": "based-on",
+    "source_ref": "indicator--7a8427d7-f7bd-4dd5-9f24-85ed788b38b6",
+    "target_ref": "observed-data--f20e5cb8-f835-422f-8093-4376fde2ae6e"
+} {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--ca38e071-f4c8-4fd6-994c-c41931adfd9b",
+    "created": "2021-01-15T08:36:57.434208Z",
+    "modified": "2021-01-15T08:36:57.434208Z",
+    "relationship_type": "based-on",
+    "source_ref": "indicator--284250cf-2be5-45b0-834e-a57740d17681",
+    "target_ref": "observed-data--a0c2f5d0-8055-4320-86f0-7b83b8c29d2f"
+} {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--f28beb0a-42a5-4a06-a63b-10f36d7a43f7",
+    "created": "2021-01-15T08:36:57.434208Z",
+    "modified": "2021-01-15T08:36:57.434208Z",
+    "relationship_type": "based-on",
+    "source_ref": "indicator--284250cf-2be5-45b0-834e-a57740d17681",
+    "target_ref": "observed-data--db39a10e-0a53-4da9-9dfd-76c99804580e"
+}
+
+Custom generated Attack Pattern, Tool and additional relationships:
+{
+    "type": "attack-pattern",
+    "spec_version": "2.1",
+    "id": "attack-pattern--9932b9ad-69de-4585-9e07-28e4f713afe8",
+    "created": "2021-01-15T08:36:57.436203Z",
+    "modified": "2021-01-15T08:36:57.436203Z",
+    "name": "ARP Spoofing attack",
+    "description": "The attacker targets the communication between network components as a MITM and uses ARP packets to redirect network traffic",
+    "kill_chain_phases": [
+        {
+            "kill_chain_name": "lockheed-martin-cyber-kill-chain",
+            "phase_name": "reconnaissance"
+        }
+    ],
+    "external_references": [
+        {
+            "source_name": "capec",
+            "external_id": "CAPEC-94"
+        },
+        {
+            "source_name": "capec",
+            "external_id": "CAPEC-141"
+        }
+    ]
+} {
+    "type": "tool",
+    "spec_version": "2.1",
+    "id": "tool--8b4a33d1-a48a-4824-a3d0-960fd00bb3a9",
+    "created": "2021-01-15T08:36:57.436203Z",
+    "modified": "2021-01-15T08:36:57.436203Z",
+    "name": "Ettercap"
+}
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--4937f18a-3c7b-4ae7-a26d-1e960489f7ac",
+    "created": "2021-01-15T08:36:57.438197Z",
+    "modified": "2021-01-15T08:36:57.438197Z",
+    "relationship_type": "indicates",
+    "source_ref": "indicator--ce032069-ce77-4aa7-86c0-8409ad1c4764",
+    "target_ref": "attack-pattern--9932b9ad-69de-4585-9e07-28e4f713afe8"
+} {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--24c61270-7b1a-4581-ac64-37104cb88a05",
+    "created": "2021-01-15T08:36:57.438197Z",
+    "modified": "2021-01-15T08:36:57.438197Z",
+    "relationship_type": "indicates",
+    "source_ref": "indicator--7a8427d7-f7bd-4dd5-9f24-85ed788b38b6",
+    "target_ref": "attack-pattern--9932b9ad-69de-4585-9e07-28e4f713afe8"
+} {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--2d50defb-7232-45f9-aaa8-4428611e2e9c",
+    "created": "2021-01-15T08:36:57.438197Z",
+    "modified": "2021-01-15T08:36:57.438197Z",
+    "relationship_type": "indicates",
+    "source_ref": "indicator--284250cf-2be5-45b0-834e-a57740d17681",
+    "target_ref": "attack-pattern--9932b9ad-69de-4585-9e07-28e4f713afe8"
+} {
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--58d21289-0270-461d-915d-56d4152b800a",
+    "created": "2021-01-15T08:36:57.438197Z",
+    "modified": "2021-01-15T08:36:57.438197Z",
+    "relationship_type": "uses",
+    "source_ref": "attack-pattern--9932b9ad-69de-4585-9e07-28e4f713afe8",
+    "target_ref": "tool--8b4a33d1-a48a-4824-a3d0-960fd00bb3a9"
+}
+
+Generated Report for the Digital Twin MITM simulation use case:
+{
+    "type": "report",
+    "spec_version": "2.1",
+    "id": "report--939a6af3-1467-4f60-b4e2-1b16a409fde8",
+    "created": "2021-01-15T08:36:57.440192Z",
+    "modified": "2021-01-15T08:36:57.440192Z",
+    "name": "Digital Twin based MITM attack simulation with ARP spoofing",
+    "description": "This report describes a simulated MITM attack on a filling plant using a digital twin in simulation mode. The attack is based on ARP spoofing.",
+    "published": "2021-01-15T09:36:57.440192Z",
+    "object_refs": [
+        "network-traffic--830334a4-dd8f-5b86-8115-4f6ef5247661",
+        "network-traffic--ea28deb7-b1e2-5ca0-9a3f-085a0a2fc995",
+        "network-traffic--e0f6e4cb-54f5-5ff1-83d3-0a5d58cd817a",
+        "network-traffic--30c21feb-1b33-556a-98ee-db85bb4527d0",
+        "network-traffic--c63234c2-a85b-59d0-a349-77a04d9e9a8e",
+        "network-traffic--c077250a-a3be-5895-ba16-88bab838730d",
+        "network-traffic--82ba1463-5102-5320-99c7-c5a74a2ec8f2",
+        "mac-addr--ee7fb849-08c8-505b-b839-e2bd9acbbf1e",
+        "mac-addr--d9afe622-4c97-507c-bab7-78e8e93ef2bc",
+        "mac-addr--7f9fbb79-9e05-5265-b4ed-e37488bba5f8",
+        "mac-addr--a9e6d5eb-b053-5575-8dd5-03ca1fd30ef3",
+        "network-traffic--1c0d338f-d60b-5055-852f-73d7dcc9bf06",
+        "network-traffic--f00e5dd9-eb93-53dc-ad91-d6cfaa3ca932",
+        "network-traffic--5e00ae8a-e93c-5f8b-8010-6e1322e595c2",
+        "network-traffic--22bb3bea-1a08-5c1f-ba13-2263bf8198a5",
+        "network-traffic--3fc1a28f-f768-5fb3-8867-bda886b5e96c",
+        "network-traffic--0ada4aaf-2018-5324-8b53-0c8520d1016a",
+        "network-traffic--4f7c1e41-090e-5d9a-b79d-2b6bf7503e84",
+        "network-traffic--90121488-4a86-5235-a391-b5efbd1f2bf1",
+        "network-traffic--3675d9bb-ea47-53e0-87e8-55a8bed6e9bc",
+        "network-traffic--02053806-2990-5cd1-8aa6-7276f468fa03",
+        "network-traffic--001c885f-fc33-5674-add3-b0a7de713889",
+        "network-traffic--3ed83c4d-d7b3-5806-95a7-20a883a29107",
+        "network-traffic--9dc8e463-3532-50bf-a2a3-da3cb2d4258a",
+        "network-traffic--1780774b-9b45-5480-be83-50f938fb8fb2",
+        "network-traffic--df2921d0-128f-57f9-b045-fe0da802673a",
+        "network-traffic--4fd85fe0-5076-515e-b1ac-31df3e420fe8",
+        "network-traffic--1400b22e-b9ff-5d01-9404-0f114f60c171",
+        "network-traffic--9d8f3536-e2b9-526c-b2a4-607d50ae1264",
+        "network-traffic--35aa7e94-ee48-520a-97d4-28c23bdd1d2e",
+        "network-traffic--59bf0be2-0a21-58b3-8e51-88c7ed7787c4",
+        "ipv4-addr--8e9dc7c8-b845-5cfb-9c37-cff3a18e08d6",
+        "ipv4-addr--48a7c3d8-855f-547b-ad6e-a717a7ca79f1",
+        "ipv4-addr--7bca20f7-804b-4a48-a597-8ff800e399cf",
+        "process--7d435935-aca1-4374-b9fa-cd93bd1d46a4",
+        "infrastructure--ad440d56-87c2-4508-8614-c1fdadb7b3e7",
+        "relationship--3af68377-a8fe-4470-9e18-1344eee31d78",
+        "relationship--25114925-8814-4c30-9865-a108d29a3105",
+        "relationship--aff7a99d-d316-42c3-bbe4-bbfb379b36d1",
+        "relationship--26ca6561-a52b-4b50-b62b-0e579289447c",
+        "observed-data--bf3b0d8a-ed35-4895-b9ec-974089c321ba",
+        "observed-data--f20e5cb8-f835-422f-8093-4376fde2ae6e",
+        "observed-data--db39a10e-0a53-4da9-9dfd-76c99804580e",
+        "observed-data--a0c2f5d0-8055-4320-86f0-7b83b8c29d2f",
+        "indicator--ce032069-ce77-4aa7-86c0-8409ad1c4764",
+        "indicator--7a8427d7-f7bd-4dd5-9f24-85ed788b38b6",
+        "indicator--284250cf-2be5-45b0-834e-a57740d17681",
+        "relationship--895b2eda-c244-4d1f-a78b-fafa5bec2968",
+        "relationship--24d1e171-dd4c-408e-8c7f-dd19babafa0e",
+        "relationship--ca38e071-f4c8-4fd6-994c-c41931adfd9b",
+        "relationship--f28beb0a-42a5-4a06-a63b-10f36d7a43f7",
+        "attack-pattern--9932b9ad-69de-4585-9e07-28e4f713afe8",
+        "tool--8b4a33d1-a48a-4824-a3d0-960fd00bb3a9",
+        "relationship--4937f18a-3c7b-4ae7-a26d-1e960489f7ac",
+        "relationship--24c61270-7b1a-4581-ac64-37104cb88a05",
+        "relationship--2d50defb-7232-45f9-aaa8-4428611e2e9c",
+        "relationship--58d21289-0270-461d-915d-56d4152b800a"
+    ]
+}
+
+-------------------------------------------
+-------------------------------------------

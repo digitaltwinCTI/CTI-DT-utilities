@@ -3,15 +3,16 @@ This is the main program for CTI generation based on digital twin simulation out
 """
 import sys
 
-from select_stix21_objects import *
-from import_stix21_data import *
-from import_simulation_output import *
-from filter_functions import *
+from stix2 import (ObjectPath, EqualityComparisonExpression, ObservationExpression, StringConstant,
+                   AndBooleanExpression,
+                   RepeatQualifier, WithinQualifier, QualifiedObservationExpression, MemoryStore)
 from stix2.v21 import *
-from stix2 import (ObjectPath, EqualityComparisonExpression, ObservationExpression, GreaterThanComparisonExpression,
-                   IsSubsetComparisonExpression, FloatConstant, StringConstant, IntegerConstant, AndBooleanExpression,
-                   FollowedByObservationExpression, RepeatQualifier, WithinQualifier, ParentheticalExpression,
-                   QualifiedObservationExpression, MemoryStore)
+
+from filter_functions import *
+from generate_dos_stix21_report import generate_dos_stix21_report
+from import_simulation_output import *
+from import_stix21_data import *
+from select_stix21_objects import *
 
 
 def pretty_print_list(list):
@@ -26,7 +27,6 @@ if __name__ == '__main__':
     # sys.stdout = open(export_path+'console_output_MITM_use_case', 'w')
 
     stix21_object_list_MITM = list()
-    stix21_object_list_DOS = list()
 
     print('\nUSE CASE 1 -- MITM Attack:\n')
 
@@ -36,6 +36,9 @@ if __name__ == '__main__':
 
     print('\n-------------------------------------------\n')
 
+    '''
+    Uncomment if you want to select custom SCOs for your use case
+    '''
     # custom_sco_list_MITM = build_sco_list(imported_sco_list)
     static_sco_list_MITM = get_static_mitm_sco_list()
 
@@ -147,7 +150,7 @@ if __name__ == '__main__':
     print('\n-------------------------------------------\n')
 
     '''
-    This is optional search utility can help users to query relationships for a given SCO or SDO prior to building
+    This optional search utility can help users to query relationships for a given SCO or SDO prior to building
     a custom relationship list. Comment out if not needed. 
     '''
     print('Searching the relationship list for a STIX2.1 object with specified relationship type:')
@@ -157,6 +160,9 @@ if __name__ == '__main__':
 
     print('')
 
+    '''
+    Uncomment if you want to update the SCO list and  build a custom SCO + SDO as well as a custom relationship list
+    '''
     # custom_sco_list_MITM_update = build_sco_list(imported_sco_list)
     # custom_sdo_sro_list_MITM = build_sdosro_list(imported_sro_list, static_sco_list_MITM, 'any')
 
@@ -166,16 +172,6 @@ if __name__ == '__main__':
     # custom_sco_sdo_list_MITM = custom_sdo_sro_list_MITM[0]
 
     print('\n-------------------------------------------\n')
-
-    '''
-    Next steps:
-    - select embedded relationships between SCOs
-    - adapt SCOs: add resolves to for IP and MAC addresses
-    - infrastructure consists of IP addresses
-    - infrastructure consists of process
-    - process opened connections refs to network traffic (enip) NOT arp
-    - pattern: ip address resolves to two MAC addresses + arp traffic more than 5 present
-    '''
 
     ip1_updated = IPv4Address(id=ip1.id, value=ip1.value, resolves_to_refs=[mac1.id, mac4.id])
     ip2_updated = IPv4Address(value=ip2.value, resolves_to_refs=[mac2.id, mac4.id])
@@ -401,23 +397,19 @@ if __name__ == '__main__':
 
     print('\n-------------------------------------------')
 
+    '''
+    Uncomment if you want to generate a new STIX2.1 json output file
+    '''
     mem = MemoryStore()
     mem.add(bundle_MITM)
-    root_dir = os.path.dirname(os.path.abspath(__file__))
-    export_path = os.path.join(root_dir, 'data\\')
     # mem.save_to_file(export_path+'STIX21_output_MITM_use_case.json')
 
     print('-------------------------------------------')
 
-    # sys.stdout.close()
+    '''
+    This method generates the STIX2.1 CTI report for the DoS use case
+    '''
 
-    '''
-    try:
-        print("This script retrieves relationships between STIX2.1 objects")
-        search_object = str(input("Enter a STIX2.1 object name (lowercase encoding) to retrieve its "
-                                   "possible relationships: "))
-        search_rel_type = str(input("Enter relationship type (direct or embedded): "))
-        search_stix21object(search_object, search_rel_type)
-    except ValueError:
-        print("Please enter a valid number")
-    '''
+    generate_dos_stix21_report()
+
+    # sys.stdout.close()
